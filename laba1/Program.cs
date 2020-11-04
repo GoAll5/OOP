@@ -49,6 +49,7 @@ namespace laba1
 
                 }
             }
+            //!
             catch (FileNotFoundException e)
             {
                 Console.WriteLine(e);
@@ -70,6 +71,7 @@ namespace laba1
                 Console.WriteLine("\tОшибка найдена!");
                 Console.WriteLine("------------------------------------------------------");
             }
+            //!
 
         }
     }
