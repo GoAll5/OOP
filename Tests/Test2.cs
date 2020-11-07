@@ -20,7 +20,7 @@ namespace Tests
             int expected = id;
             int actual = apple.ShowId();
 
-            //assert
+            //assert ожидали - получили
             Assert.AreEqual(expected, actual);
         }
     }
