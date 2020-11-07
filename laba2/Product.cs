@@ -4,13 +4,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace laba2
-{
-    class Product
+{   
+    
+    public class Product
     {
-        public int Id { private set; get; }
-        public string Name { private set; get; }
-        public int Amount { private set; get; }
-        public int Price { private set; get; }
+        private readonly int Id;
+        private readonly string Name;
+        private readonly int Amount;
+        private int Price;
 
 
         public Product(int id, string name, int amount, int price)
@@ -21,26 +22,30 @@ namespace laba2
             Price = price;
         }
 
+        
         public void ChangePrice(int newPrice)
         {
             Price = newPrice;
         }
 
+        public int ShowId()
+        {
+            return this.Id;
+        }
 
-        //public Product Show()
-        //{
-        //    return this;
-        //}
+        public string ShowName()
+        {
+            return this.Name;
+        }
 
-        //public int ShowId()
-        //{
-        //    return this.id;
-        //}
-
-        //public string ShowName()
-        //{
-        //    return this.name;
-        //}
+        public int ShowAmount()
+        {
+            return this.Amount;
+        }
+        public int ShowPrice()
+        {
+            return this.Price;
+        }
 
     }
 }
