@@ -5,14 +5,14 @@ using System.Threading;
 
 namespace laba2
 {
-    class Shop
+    public class Shop
     {
         private readonly int Id;
         private readonly string Name;
         private readonly string Address;
         private List<Product> products;
 
-        Shop(int id, string name, string address)
+        public Shop(int id, string name, string address)
         {
             products = new List<Product>();
             Id = id;
@@ -20,6 +20,10 @@ namespace laba2
             Address = address;
         }
 
+        public void AddProduct(Product newProduct)
+        {
+            products.Add(newProduct);
+        }
         public void ChangePrice(int idOfProduct, int newPrice)
         {
             for (int i = 0; i < products.Count; i++)
@@ -39,6 +43,29 @@ namespace laba2
 
                 }
             }
+        }
+        public int ShowPrice(int idOfProduct)
+        {
+            
+            for (int i = 0; i < products.Count; i++)
+            {
+                try
+                {
+                    if (idOfProduct == products[i].ShowId())
+                    {
+                        return products[i].ShowPrice();
+                    }
+                    
+                    throw new Exception("В магазине с айди \"" + Id + "\" не удалось найти продукт с айди:" + idOfProduct);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
+                
+            }
+            return -1;
         }
         public int ShowId()
         {
