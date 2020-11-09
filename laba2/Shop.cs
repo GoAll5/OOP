@@ -35,56 +35,40 @@ namespace laba2
         }
         public void ChangePrice(int idOfProduct, int newPrice)
         {
-            for (int i = 0; i < products.Count; i++)
+            Product product = products.Find(item => item.ShowId() == idOfProduct);
+            if (product == null)
             {
-
-                    if (idOfProduct == products[i].ShowId())
-                    {
-                        products[i].ChangePrice(newPrice);
-                        return;
-                    }
-                
+                return;
             }
+            product.ChangePrice(newPrice);
         }
 
         
         public int ShowPrice(int idOfProduct)
         {
-            
-            for (int i = 0; i < products.Count; i++)
-            {
-                try
-                {
-                    if (idOfProduct == products[i].ShowId())
-                    {
-                        return products[i].ShowPrice();
-                    }
-                    
-                    throw new Exception("В магазине с айди \"" + Id + "\" не удалось найти продукт с айди:" + idOfProduct);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-
-                }
                 
-            }
-            return -1;
-        }
+                Product product = products.Find(item => item.ShowId() == idOfProduct);
+                if (product == null)
+                {
+                    return default(int);
+                }
+                return product.ShowPrice();
 
+        }
         
+
         public List<ProductCount> CanBuyProductsForMoney(int money)
         {
             List<ProductCount> canBuyProducts = new List<ProductCount>();
             foreach(Product product in products)
             {
-                int count = 0;
-                while(money >= (product.ShowPrice()*(count+1)) && count+1 <= product.ShowAmount())
+                int count = money / product.ShowPrice();
+                if (count > product.ShowAmount())
                 {
-                    count++;
+                    canBuyProducts.Add(new ProductCount(product.ShowName(), product.ShowAmount()));
                 }
-
-                canBuyProducts.Add(new ProductCount(product.ShowName(), count));
+                else
+                    canBuyProducts.Add(new ProductCount(product.ShowName(), count));
             }
             return canBuyProducts;
         }
@@ -112,7 +96,7 @@ namespace laba2
                     
                 }
                 if (!haveProduct)
-                    return -1;
+                    return default(int);
             }
             return money;
         }

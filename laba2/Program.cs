@@ -6,7 +6,7 @@ namespace laba2
 {
     public class Program
     {
-        
+        //! в отдельный класс, поиск по продуктам внутри магазина
         public static Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
         {
             int minPrice = -1;
@@ -30,16 +30,15 @@ namespace laba2
 
         
 
-        
         public static Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
-        {
-            int minPrice = -1;
+        {   
+            int minPrice = 2147483647; //MAX Price
             Shop minShop = new Shop();
             foreach (Shop shop in shops)
             {
                 int priceInThisShop;
                 priceInThisShop = shop.BuyBatchProducts(productCounts);
-                if (minPrice == -1 || priceInThisShop < minPrice)
+                if (priceInThisShop < minPrice && priceInThisShop != default(int))
                 {
                     minPrice = priceInThisShop;
                     minShop = shop;
@@ -50,7 +49,7 @@ namespace laba2
 
         static void Main()
         {
-
+            Console.WriteLine(default(int));
             Product product1 = new Product(1, "яблоко", 10, 35);
             Product product2 = new Product(2, "груша", 20, 30);
             Product product3 = new Product(3, "лук зеленый", 10, 100);
@@ -101,6 +100,7 @@ namespace laba2
             shop1.AddProduct(product8);
             shop1.AddProduct(product9);
             shop1.AddProduct(product10);
+
 
             Shop shop2 = new Shop(2, "Ашан", "Парфеновская");
             shop2.AddProduct(product11);

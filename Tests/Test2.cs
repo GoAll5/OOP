@@ -45,7 +45,6 @@ namespace Tests
         [TestCase(25, 2, TestName = "TestChange_25 = 25", ExpectedResult = 25)]
         [TestCase(10, 3, TestName = "TestChange_10 = 10", ExpectedResult = 10)]
         [TestCase(100, 4, TestName = "TestChange_25 = 25", ExpectedResult = 100)]
-        [TestCase(100, 5, TestName = "TestChange_100 != -1", ExpectedResult = -1)]
         public int TestChange(int price, int id)
         {
             Product product1 = new Product(1, "яблоко", 10, 35);
@@ -61,6 +60,26 @@ namespace Tests
             shop1.ChangePrice(id, price);
 
             return shop1.ShowPrice(id);
+        }
+
+        [TestCase(100, 5)]
+        public void TestChange1(int price, int id)
+        {
+            Product product1 = new Product(1, "яблоко", 10, 35);
+            Product product2 = new Product(2, "груша", 20, 30);
+            Product product3 = new Product(3, "лук зеленый", 10, 100);
+            Product product4 = new Product(4, "лук репчатый", 33, 60);
+
+            Shop shop1 = new Shop(1, "Магазин1", "Кронва");
+            shop1.AddProduct(product1);
+            shop1.AddProduct(product2);
+            shop1.AddProduct(product3);
+            shop1.AddProduct(product4);
+            shop1.ChangePrice(id, price);
+            int? expected = null;
+            int actual = shop1.ShowPrice(id);
+
+            Assert.AreEqual(expected.GetValueOrDefault(), actual);
         }
 
         [TestCase(100)]
