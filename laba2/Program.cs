@@ -6,14 +6,14 @@ namespace laba2
 {
     public class Program
     {
-        //!
+        
         public static Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
         {
             int minPrice = -1;
             Shop minPriceShop = new Shop();
             foreach(Shop shop in shops)
             {
-                foreach(Product product in shop.products)
+                foreach (Product product in shop.products)
                 {
                     if (product.ShowName() == nameOfProduct)
                     {
@@ -77,6 +77,16 @@ namespace laba2
             Product product24 = new Product(24, "скумбрия", 15, 105);
             Product product25 = new Product(25, "гвозди", 12, 35);
             Product product26 = new Product(26, "гвозди", 5, 40);
+            Product product27 = new Product(27, "клубника", 20, 180);
+            Product product28 = new Product(28, "финики", 34, 100);
+            Product product29 = new Product(29, "чернослив", 100, 4);
+            Product product30 = new Product(20, "капуста", 10, 60);
+            Product product31 = new Product(21, "орехи", 34, 110);
+            Product product32 = new Product(22, "макароны", 44, 74);
+            Product product33 = new Product(23, "хлеб", 30, 20);
+            Product product34 = new Product(24, "скумбрия", 15, 105);
+            Product product35 = new Product(25, "гвозди", 12, 35);
+            Product product36 = new Product(26, "гвозди", 5, 40);
 
             List<Shop> shops = new List<Shop>();
 
@@ -93,18 +103,22 @@ namespace laba2
             shop1.AddProduct(product10);
 
             Shop shop2 = new Shop(2, "Ашан", "Парфеновская");
-            shop2.AddProduct(product10);
             shop2.AddProduct(product11);
             shop2.AddProduct(product12);
             shop2.AddProduct(product13);
             shop2.AddProduct(product14);
             shop2.AddProduct(product15);
-            shop2.AddProduct(product16);
-            shop2.AddProduct(product17);
-            shop2.AddProduct(product18);
-            shop2.AddProduct(product19);
-            shop2.AddProduct(product20);
-            shop2.AddProduct(product21);
+            shop2.AddProduct(product27);
+            shop2.AddProduct(product28);
+            shop2.AddProduct(product29);
+            shop2.AddProduct(product30);
+            shop2.AddProduct(product31);
+            shop2.AddProduct(product32);
+            shop2.AddProduct(product33);
+            shop2.AddProduct(product34);
+            shop2.AddProduct(product35);
+            shop2.AddProduct(product36);
+
 
 
             Shop shop3 = new Shop(3, "fixprice", "Фрунзенская");
@@ -119,15 +133,9 @@ namespace laba2
             shop3.AddProduct(product24);
             shop3.AddProduct(product25);
             shop3.AddProduct(product26);
-            shop3.AddProduct(product15);
-            shop3.AddProduct(product14);
-            shop3.AddProduct(product13);
-            shop3.AddProduct(product12);
 
-            shop3.ChangePrice(12, 10);
-            shop3.ChangePrice(13, 10);
-            shop3.ChangePrice(14, 10);
-            shop3.ChangePrice(15, 10);
+
+
             shop3.ChangePrice(16, 10);
             shop3.ChangePrice(17, 10);
             shop3.ChangePrice(18, 10);
@@ -176,8 +184,8 @@ namespace laba2
             AnswerMinPriceShow = FindMinShopBatchOfProduct(shops, productCounts);
             Console.WriteLine(AnswerMinPriceShow.ShowName());
 
-            //AnswerMinPriceShow = FindMinPrice(shops, "орехи");
-            //Console.WriteLine(AnswerMinPriceShow.ShowName());
+            AnswerMinPriceShow = FindMinPrice(shops, "клубника");
+            Console.WriteLine(AnswerMinPriceShow.ShowName());
         }
     }
 }

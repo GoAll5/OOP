@@ -238,5 +238,41 @@ namespace Tests
 
             Assert.AreEqual(expected, actual);
         }
+        [Test]
+        public void TestFindMinPrice1()
+        {
+            Product product5 = new Product(5, "скумбрия", 1, 35);
+            Product product6 = new Product(6, "вода", 2, 30);
+            Product product7 = new Product(7, "тыква", 3, 100);
+            Product product8 = new Product(8, "дыня", 1, 60);
+
+
+            Product product1 = new Product(1, "яблоко", 10, 35);
+            Product product2 = new Product(2, "груша", 20, 30);
+            Product product3 = new Product(3, "лук зеленый", 10, 100);
+            Product product4 = new Product(4, "дыня", 33, 70);
+
+            Shop shop1 = new Shop(1, "Магазин1", "Кронва");
+            shop1.AddProduct(product1);
+            shop1.AddProduct(product2);
+            shop1.AddProduct(product3);
+            shop1.AddProduct(product4);
+
+            Shop shop3 = new Shop(2, "Магазин2", "Парфеновская");
+            shop3.AddProduct(product5);
+            shop3.AddProduct(product6);
+            shop3.AddProduct(product7);
+            shop3.AddProduct(product8);
+
+            List<Shop> shops = new List<Shop>();
+
+            shops.Add(shop1);
+            shops.Add(shop3);
+
+            int expected = 2;
+            int actual = Program.FindMinPrice(shops, "дыня").ShowId();
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
