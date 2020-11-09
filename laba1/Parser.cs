@@ -11,12 +11,13 @@ namespace laba1
     {
         private Dictionary<SectionName, string> dictSectionValue;
 
-
+        //!
         private void checkfile(string fileNames)
         {
             if (fileNames.Substring(fileNames.Length - 4, 4) != ".ini")
                 throw new TypeLoadException("Файл \"" + fileNames + "\" не является .ini файлом");
         }
+        //!
         public Parser(string fileNames)
         {
             checkfile(fileNames);
@@ -46,9 +47,10 @@ namespace laba1
 
                     var position = readline.IndexOf("=");
                     name = readline.Substring(0, position);
-
+                    //!
                     value = readline.Substring(position + 1, readline.Length - position - 1);
                     value = value.Replace(".", ",");
+                    //!
                     if (value.IndexOf(";") != -1)
                         value = value.Substring(0, value.IndexOf(";"));
 
@@ -60,7 +62,7 @@ namespace laba1
         }
 
 
-
+        //!
         public T GetInfo<T>(string section, string name)
         {
             string value = "";
@@ -74,7 +76,7 @@ namespace laba1
             else
                 throw new Exception("В секции\"" + section + "\" не удалось найти поле:" + name);
         }
-
+        //!
         private static bool MyTryParse<T>(string input)
         {
             try
