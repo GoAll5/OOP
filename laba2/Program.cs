@@ -6,46 +6,6 @@ namespace laba2
 {
     public class Program
     {
-        //! в отдельный класс, поиск по продуктам внутри магазина
-        public static Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
-        {
-            int minPrice = -1;
-            Shop minPriceShop = new Shop();
-            foreach(Shop shop in shops)
-            {
-                foreach (Product product in shop.products)
-                {
-                    if (product.ShowName() == nameOfProduct)
-                    {
-                        if (minPrice == -1 || product.ShowPrice() < minPrice)
-                        {
-                            minPrice = product.ShowPrice();
-                            minPriceShop = shop;
-                        }
-                    }
-                }
-            }
-            return minPriceShop;
-        }
-
-        
-
-        public static Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
-        {   
-            int minPrice = 2147483647; //MAX Price
-            Shop minShop = new Shop();
-            foreach (Shop shop in shops)
-            {
-                int priceInThisShop;
-                priceInThisShop = shop.BuyBatchProducts(productCounts);
-                if (priceInThisShop < minPrice && priceInThisShop != default(int))
-                {
-                    minPrice = priceInThisShop;
-                    minShop = shop;
-                }
-            }
-            return minShop;
-        }
 
         static void Main()
         {
@@ -181,10 +141,10 @@ namespace laba2
             shops.Add(shop3);
 
             Shop AnswerMinPriceShow;
-            AnswerMinPriceShow = FindMinShopBatchOfProduct(shops, productCounts);
+            AnswerMinPriceShow = ChainOfStores.FindMinShopBatchOfProduct(shops, productCounts);
             Console.WriteLine(AnswerMinPriceShow.ShowName());
 
-            AnswerMinPriceShow = FindMinPrice(shops, "клубника");
+            AnswerMinPriceShow = ChainOfStores.FindMinPrice(shops, "клубника");
             Console.WriteLine(AnswerMinPriceShow.ShowName());
         }
     }

@@ -209,7 +209,7 @@ namespace Tests
             shop3.AddProduct(product7);
             shop3.AddProduct(product8);
 
-            int expected = -1;
+            int expected = 0;
             int actual = shop3.BuyBatchProducts(products);
 
             Assert.AreEqual(expected, actual);
@@ -226,7 +226,7 @@ namespace Tests
             List<ProductCount> products = new List<ProductCount>();
 
             products.Add(new ProductCount("скумбрия", 1));
-            products.Add(new ProductCount("вода", 3));
+            products.Add(new ProductCount("вода", 1));
             products.Add(new ProductCount("тыква", 1));
             products.Add(new ProductCount("дыня", 1));
 
@@ -253,7 +253,7 @@ namespace Tests
             shops.Add(shop3);
 
             int expected = shop3.ShowId();
-            int actual = Program.FindMinShopBatchOfProduct(shops, products).ShowId();
+            int actual = (ChainOfStores.FindMinShopBatchOfProduct(shops, products)).ShowId();
 
             Assert.AreEqual(expected, actual);
         }
@@ -289,7 +289,7 @@ namespace Tests
             shops.Add(shop3);
 
             int expected = 2;
-            int actual = Program.FindMinPrice(shops, "дыня").ShowId();
+            int actual = ChainOfStores.FindMinPrice(shops, "дыня").ShowId();
 
             Assert.AreEqual(expected, actual);
         }

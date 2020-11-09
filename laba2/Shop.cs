@@ -15,7 +15,7 @@ namespace laba2
         public Shop()
         {
             products = new List<Product>();
-            Id = -1;
+            Id = default(int);
             Name = "none";
             Address = "none";
         }
@@ -55,7 +55,18 @@ namespace laba2
                 return product.ShowPrice();
 
         }
-        
+        public int ShowPriceName(string NameOfProduct)
+        {
+
+            Product product = products.Find(item => item.ShowName() == NameOfProduct);
+            if (product == null)
+            {
+                return default(int);
+            }
+            return product.ShowPrice();
+
+        }
+
 
         public List<ProductCount> CanBuyProductsForMoney(int money)
         {
