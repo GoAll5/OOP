@@ -9,10 +9,9 @@ namespace laba2
         public string Name;
         public int Amount;
 
-        public ProductCount()
+        public bool Equals(ProductCount obj)
         {
-            Name = "none";
-            Amount = 0;
+            return this.Name == obj.Name && this.Amount == obj.Amount;
         }
         public ProductCount(string name, int amount)
         {

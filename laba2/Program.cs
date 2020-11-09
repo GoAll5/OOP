@@ -166,6 +166,11 @@ namespace laba2
             int howMuch = shop3.BuyBatchProducts(productCounts);
 
             Console.WriteLine(howMuch);
+
+            shops.Add(shop1);
+            shops.Add(shop2);
+            shops.Add(shop3);
+
         }
     }
 }

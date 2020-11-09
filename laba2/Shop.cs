@@ -72,7 +72,7 @@ namespace laba2
             return -1;
         }
 
-        //!
+        
         public List<ProductCount> CanBuyProductsForMoney(int money)
         {
             List<ProductCount> canBuyProducts = new List<ProductCount>();
@@ -86,10 +86,6 @@ namespace laba2
 
                 canBuyProducts.Add(new ProductCount(product.ShowName(), count));
             }
-            //foreach (ProductCount product in canBuyProducts)
-            //{
-            //    Console.WriteLine(product.Name + "  " + product.Amount);
-            //}
             return canBuyProducts;
         }
 
@@ -119,6 +115,11 @@ namespace laba2
                     return -1;
             }
             return money;
+        }
+
+        public bool Equals(Shop obj)
+        {
+            return this.Id == obj.Id;
         }
         public int ShowId()
         {
