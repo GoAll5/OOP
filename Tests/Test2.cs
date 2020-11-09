@@ -1,11 +1,28 @@
 using NUnit.Framework;
+using System.Collections.Generic;
+using System;
+using System.Text;
 using laba2;
 
 namespace Tests
 {   
     [TestFixture]
     public class Tests
-    {
+    {   
+        [SetUp]
+        public void SetUp()
+        {
+            Product product1 = new Product(1, "яблоко", 10, 35);
+            Product product2 = new Product(2, "груша", 20, 30);
+            Product product3 = new Product(3, "лук зеленый", 10, 100);
+            Product product4 = new Product(4, "лук репчатый", 33, 60);
+
+            Shop shop1 = new Shop(1, "Магазин1", "Кронва");
+            shop1.AddProduct(product1);
+            shop1.AddProduct(product2);
+            shop1.AddProduct(product3);
+            shop1.AddProduct(product4);
+        }
 
         [Test]
         public void TestShow()
@@ -23,8 +40,7 @@ namespace Tests
             //assert ожидали - получили
             Assert.AreEqual(expected, actual);
         }
-        //[TestCase(4, TestName ="4 = 4", ExpectedResult = 4)]
-        //[Test]
+        
         [TestCase(4, 1, TestName = "TestChange_4 = 4", ExpectedResult = 4)]
         [TestCase(25, 2, TestName = "TestChange_25 = 25", ExpectedResult = 25)]
         [TestCase(10, 3, TestName = "TestChange_10 = 10", ExpectedResult = 10)]
@@ -37,14 +53,100 @@ namespace Tests
             Product product3 = new Product(3, "лук зеленый", 10, 100);
             Product product4 = new Product(4, "лук репчатый", 33, 60);
 
-            Shop shops = new Shop(1, "Магазин1", "Кронва");
-            shops.AddProduct(product1);
-            shops.AddProduct(product2);
-            shops.AddProduct(product3);
-            shops.AddProduct(product4);
-            shops.ChangePrice(id, price);
+            Shop shop1 = new Shop(1, "Магазин1", "Кронва");
+            shop1.AddProduct(product1);
+            shop1.AddProduct(product2);
+            shop1.AddProduct(product3);
+            shop1.AddProduct(product4);
+            shop1.ChangePrice(id, price);
 
-            return shops.ShowPrice(id);
-        } 
+            return shop1.ShowPrice(id);
+        }
+
+        [TestCase(100)]
+        public void TestCanBuyProductForMoney(int money)
+        {
+            Product product5 = new Product(5, "скумбрия", 1, 35);
+            Product product6 = new Product(6, "вода", 2, 30);
+            Product product7 = new Product(7, "тыква", 3, 100);
+            Product product8 = new Product(8, "дыня", 1, 60);
+
+            List <ProductCount> products = new List <ProductCount>();
+            //new ProductCount("скумбрия", 1), new ProductCount("вода", 2),
+            //new ProductCount("тыкква", 1), new ProductCount("дыня", 1)
+            products.Add(new ProductCount("скумбрия", 1));
+            products.Add(new ProductCount("вода", 2));
+            products.Add(new ProductCount("тыква", 1));
+            products.Add(new ProductCount("дыня", 1));
+
+            Shop shop2 = new Shop(1, "Магазин1", "Кронва");
+            shop2.AddProduct(product5);
+            shop2.AddProduct(product6);
+            shop2.AddProduct(product7);
+            shop2.AddProduct(product8);
+
+            
+
+            List<ProductCount> expected = products;
+            List<ProductCount> actual = shop2.CanBuyProductsForMoney(money);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0)]
+        public void TestCanBuyProductForMoney0(int money)
+        {
+            Product product5 = new Product(5, "скумбрия", 1, 35);
+            Product product6 = new Product(6, "вода", 2, 30);
+            Product product7 = new Product(7, "тыква", 3, 100);
+            Product product8 = new Product(8, "дыня", 1, 60);
+
+            List<ProductCount> products = new List<ProductCount>();
+            //new ProductCount("скумбрия", 1), new ProductCount("вода", 2),
+            //new ProductCount("тыкква", 1), new ProductCount("дыня", 1)
+            products.Add(new ProductCount("скумбрия", 0));
+            products.Add(new ProductCount("вода", 0));
+            products.Add(new ProductCount("тыква", 0));
+            products.Add(new ProductCount("дыня", 0));
+
+            Shop shop2 = new Shop(1, "Магазин1", "Кронва");
+            shop2.AddProduct(product5);
+            shop2.AddProduct(product6);
+            shop2.AddProduct(product7);
+            shop2.AddProduct(product8);
+
+            List<ProductCount> expected = products;
+            List<ProductCount> actual = shop2.CanBuyProductsForMoney(money);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(1)]
+        public void TestCanBuyProductForMoney1(int money)
+        {
+            Product product5 = new Product(5, "скумбрия", 1, 35);
+            //Product product6 = new Product(6, "вода", 2, 30);
+            //Product product7 = new Product(7, "тыква", 3, 100);
+            //Product product8 = new Product(8, "дыня", 1, 60);
+
+            List<ProductCount> products = new List<ProductCount>();
+            //new ProductCount("скумбрия", 1), new ProductCount("вода", 2),
+            //new ProductCount("тыкква", 1), new ProductCount("дыня", 1)
+            products.Add(new ProductCount("скумбрия", 0));
+            //products.Add(new ProductCount("вода", 0));
+            //products.Add(new ProductCount("тыква", 0));
+            //products.Add(new ProductCount("дыня", 0));
+
+            Shop shop2 = new Shop(1, "Магазин1", "Кронва");
+            shop2.AddProduct(product5);
+            //shop2.AddProduct(product6);
+            //shop2.AddProduct(product7);
+            //shop2.AddProduct(product8);
+
+            List<ProductCount> expected = products;
+            List<ProductCount> actual = shop2.CanBuyProductsForMoney(money);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

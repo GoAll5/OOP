@@ -10,7 +10,15 @@ namespace laba2
         private readonly int Id;
         private readonly string Name;
         private readonly string Address;
-        private List<Product> products;
+        public List<Product> products;
+
+        public Shop()
+        {
+            products = new List<Product>();
+            Id = -1;
+            Name = "none";
+            Address = "none";
+        }
 
         public Shop(int id, string name, string address)
         {
@@ -20,6 +28,7 @@ namespace laba2
             Address = address;
         }
 
+        
         public void AddProduct(Product newProduct)
         {
             products.Add(newProduct);
@@ -44,6 +53,8 @@ namespace laba2
                 }
             }
         }
+
+        
         public int ShowPrice(int idOfProduct)
         {
             
@@ -66,6 +77,51 @@ namespace laba2
                 
             }
             return -1;
+        }
+
+        //!
+        public List<ProductCount> CanBuyProductsForMoney(int money)
+        {
+            List<ProductCount> canBuyProducts = new List<ProductCount>();
+            foreach(Product product in products)
+            {
+                int count = 0;
+                while(money >= (product.ShowPrice()*(count+1)) && count+1 <= product.ShowAmount())
+                {
+                    count++;
+                }
+                Console.WriteLine(product.ShowName() + "  " + count);
+                canBuyProducts.Add(new ProductCount(product.ShowName(), count));
+            }
+            return canBuyProducts;
+        }
+
+        //!
+        public int BuyBatchProducts(List<ProductCount> productCounts)
+        {
+            int money = 0;
+            bool haveProduct;
+            foreach(ProductCount productCount in productCounts)
+            {
+                haveProduct = false;
+                foreach (Product product in products)
+                {   
+
+                    if(productCount.Name == product.ShowName())
+                    {
+                        if (productCount.Amount <= product.ShowAmount())
+                        { 
+                            money += product.ShowPrice() * productCount.Amount;
+                            haveProduct = true;
+                            break;
+                        }
+                    }
+                    
+                }
+                if (!haveProduct)
+                    return -1;
+            }
+            return money;
         }
         public int ShowId()
         {

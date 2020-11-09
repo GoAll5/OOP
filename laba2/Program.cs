@@ -1,9 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace laba2
 {
     class Program
     {
+        //!
+        public Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
+        {
+            int minPrice = -1;
+            Shop minPriceShop = new Shop();
+            for(int i = 0; i < shops.Count; i++)
+            {   for (int j = 0; j < shops[i].products.Count; j++)
+                {
+                    if (shops[i].products[j].ShowName() == nameOfProduct)
+                    {
+                        if (minPrice == -1 || shops[i].products[j].ShowPrice() < minPrice)
+                        {
+                            minPrice = shops[i].products[j].ShowPrice();
+                            minPriceShop = shops[i];
+                        }
+                    }
+                }
+            }
+            return minPriceShop;
+        }
+
+        
+
+        //!
+        public Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
+        {
+            int minPrice = -1;
+            Shop minShop = new Shop();
+            foreach (Shop shop in shops)
+            {
+                int priceInThisShop;
+                priceInThisShop = shop.BuyBatchProducts(productCounts);
+                if (minPrice == -1 || priceInThisShop < minPrice)
+                {
+                    minPrice = priceInThisShop;
+                    minShop = shop;
+                }
+            }
+            return minShop;
+        }
+
         static void Main()
         {
 
@@ -31,9 +74,21 @@ namespace laba2
             Product product22 = new Product(22, "макароны", 44, 74);
             Product product23 = new Product(23, "хлеб", 30, 20);
             Product product24 = new Product(24, "скумбрия", 15, 105);
-            
             Product product25 = new Product(25, "гвозди", 12, 35);
             Product product26 = new Product(26, "гвозди", 5, 40);
+
+            List<Shop> shops = new List<Shop>();
+
+            Shop shop1 = new Shop(1, "Пятерочка", "Пушкинская");
+            shop1.AddProduct(product1);
+            shop1.AddProduct(product2);
+            shop1.AddProduct(product3);
+            shop1.AddProduct(product4);
+            shop1.AddProduct(product5);
+            shop1.AddProduct(product6);
+            shop1.AddProduct(product7);
+            shop1.AddProduct(product8);
+            shop1.CanBuyProductsForMoney(100);
         }
     }
 }
