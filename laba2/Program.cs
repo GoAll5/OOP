@@ -88,7 +88,84 @@ namespace laba2
             shop1.AddProduct(product6);
             shop1.AddProduct(product7);
             shop1.AddProduct(product8);
-            shop1.CanBuyProductsForMoney(100);
+            shop1.AddProduct(product9);
+            shop1.AddProduct(product10);
+
+            Shop shop2 = new Shop(2, "Ашан", "Парфеновская");
+            shop2.AddProduct(product10);
+            shop2.AddProduct(product11);
+            shop2.AddProduct(product12);
+            shop2.AddProduct(product13);
+            shop2.AddProduct(product14);
+            shop2.AddProduct(product15);
+            shop2.AddProduct(product16);
+            shop2.AddProduct(product17);
+            shop2.AddProduct(product18);
+            shop2.AddProduct(product19);
+            shop2.AddProduct(product20);
+            shop2.AddProduct(product21);
+
+
+            Shop shop3 = new Shop(3, "fixprice", "Фрунзенская");
+            shop3.AddProduct(product16);
+            shop3.AddProduct(product17);
+            shop3.AddProduct(product18);
+            shop3.AddProduct(product19);
+            shop3.AddProduct(product20);
+            shop3.AddProduct(product21);
+            shop3.AddProduct(product22);
+            shop3.AddProduct(product23);
+            shop3.AddProduct(product24);
+            shop3.AddProduct(product25);
+            shop3.AddProduct(product26);
+            shop3.AddProduct(product15);
+            shop3.AddProduct(product14);
+            shop3.AddProduct(product13);
+            shop3.AddProduct(product12);
+
+            shop3.ChangePrice(12, 10);
+            shop3.ChangePrice(13, 10);
+            shop3.ChangePrice(14, 10);
+            shop3.ChangePrice(15, 10);
+            shop3.ChangePrice(16, 10);
+            shop3.ChangePrice(17, 10);
+            shop3.ChangePrice(18, 10);
+            shop3.ChangePrice(19, 10);
+            shop3.ChangePrice(20, 10);
+            shop3.ChangePrice(21, 10);
+            shop3.ChangePrice(22, 10);
+            shop3.ChangePrice(23, 10);
+            shop3.ChangePrice(24, 10);
+            shop3.ChangePrice(25, 10);
+            shop3.ChangePrice(26, 10);
+            
+            
+            List<ProductCount> products = new List<ProductCount>();
+            products = shop3.CanBuyProductsForMoney(100);
+            Console.WriteLine();
+            foreach (ProductCount product in products)
+            {
+                Console.WriteLine(product.Name + "  " + product.Amount);
+            }
+
+            ProductCount productCount21 = new ProductCount("орехи", 14);
+            ProductCount productCount22 = new ProductCount("макароны", 13); //44
+            ProductCount productCount23 = new ProductCount("хлеб", 2);
+            ProductCount productCount24 = new ProductCount("скумбрия", 10);
+            ProductCount productCount25 = new ProductCount("гвозди", 5);
+            ProductCount productCount26 = new ProductCount("гвозди", 3);
+
+            List<ProductCount> productCounts = new List<ProductCount>();
+            productCounts.Add(productCount21);
+            productCounts.Add(productCount22);
+            productCounts.Add(productCount23);
+            productCounts.Add(productCount24);
+            productCounts.Add(productCount25);
+            productCounts.Add(productCount26);
+
+            int howMuch = shop3.BuyBatchProducts(productCounts);
+
+            Console.WriteLine(howMuch);
         }
     }
 }

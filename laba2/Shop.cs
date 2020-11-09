@@ -37,20 +37,13 @@ namespace laba2
         {
             for (int i = 0; i < products.Count; i++)
             {
-                try
-                {
+
                     if (idOfProduct == products[i].ShowId())
                     {
                         products[i].ChangePrice(newPrice);
                         return;
                     }
-                    throw new Exception("В магазине с айди \"" + Id + "\" не удалось найти продукт с айди:" + idOfProduct);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-
-                }
+                
             }
         }
 
@@ -90,13 +83,17 @@ namespace laba2
                 {
                     count++;
                 }
-                Console.WriteLine(product.ShowName() + "  " + count);
+
                 canBuyProducts.Add(new ProductCount(product.ShowName(), count));
             }
+            //foreach (ProductCount product in canBuyProducts)
+            //{
+            //    Console.WriteLine(product.Name + "  " + product.Amount);
+            //}
             return canBuyProducts;
         }
 
-        //!
+        
         public int BuyBatchProducts(List<ProductCount> productCounts)
         {
             int money = 0;

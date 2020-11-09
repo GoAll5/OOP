@@ -121,30 +121,77 @@ namespace Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(1)]
-        public void TestCanBuyProductForMoney1(int money)
+        [TestCase(1000)]
+        public void TestCanBuyProductForMoney1000(int money)
         {
             Product product5 = new Product(5, "скумбрия", 1, 35);
-            //Product product6 = new Product(6, "вода", 2, 30);
-            //Product product7 = new Product(7, "тыква", 3, 100);
-            //Product product8 = new Product(8, "дыня", 1, 60);
+            
 
             List<ProductCount> products = new List<ProductCount>();
-            //new ProductCount("скумбрия", 1), new ProductCount("вода", 2),
-            //new ProductCount("тыкква", 1), new ProductCount("дыня", 1)
-            products.Add(new ProductCount("скумбрия", 0));
-            //products.Add(new ProductCount("вода", 0));
-            //products.Add(new ProductCount("тыква", 0));
-            //products.Add(new ProductCount("дыня", 0));
+            
+            products.Add(new ProductCount("скумбрия", 1));
+            
 
             Shop shop2 = new Shop(1, "Магазин1", "Кронва");
             shop2.AddProduct(product5);
-            //shop2.AddProduct(product6);
-            //shop2.AddProduct(product7);
-            //shop2.AddProduct(product8);
+            
 
             List<ProductCount> expected = products;
             List<ProductCount> actual = shop2.CanBuyProductsForMoney(money);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TestBuyBatchProducts225()
+        {
+            Product product5 = new Product(5, "скумбрия", 1, 35);
+            Product product6 = new Product(6, "вода", 2, 30);
+            Product product7 = new Product(7, "тыква", 3, 100);
+            Product product8 = new Product(8, "дыня", 1, 60);
+
+            List<ProductCount> products = new List<ProductCount>();
+            
+            products.Add(new ProductCount("скумбрия", 1));
+            products.Add(new ProductCount("вода", 1));
+            products.Add(new ProductCount("тыква", 1));
+            products.Add(new ProductCount("дыня", 1));
+
+            Shop shop3 = new Shop(1, "Магазин1", "Кронва");
+            shop3.AddProduct(product5);
+            shop3.AddProduct(product6);
+            shop3.AddProduct(product7);
+            shop3.AddProduct(product8);
+
+            int expected = 225;
+            int actual = shop3.BuyBatchProducts(products);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TestBuyBatchProducts1()
+        {
+            Product product5 = new Product(5, "скумбрия", 1, 35);
+            Product product6 = new Product(6, "вода", 2, 30);
+            Product product7 = new Product(7, "тыква", 3, 100);
+            Product product8 = new Product(8, "дыня", 1, 60);
+
+            List<ProductCount> products = new List<ProductCount>();
+
+            products.Add(new ProductCount("скумбрия", 1));
+            products.Add(new ProductCount("вода", 3));
+            products.Add(new ProductCount("тыква", 1));
+            products.Add(new ProductCount("дыня", 1));
+
+            Shop shop3 = new Shop(1, "Магазин1", "Кронва");
+            shop3.AddProduct(product5);
+            shop3.AddProduct(product6);
+            shop3.AddProduct(product7);
+            shop3.AddProduct(product8);
+
+            int expected = -1;
+            int actual = shop3.BuyBatchProducts(products);
 
             Assert.AreEqual(expected, actual);
         }
