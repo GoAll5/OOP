@@ -4,22 +4,23 @@ using System.Text;
 
 namespace laba2
 {
-    class Program
+    public class Program
     {
         //!
-        public Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
+        public static Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
         {
             int minPrice = -1;
             Shop minPriceShop = new Shop();
-            for(int i = 0; i < shops.Count; i++)
-            {   for (int j = 0; j < shops[i].products.Count; j++)
+            foreach(Shop shop in shops)
+            {
+                foreach(Product product in shop.products)
                 {
-                    if (shops[i].products[j].ShowName() == nameOfProduct)
+                    if (product.ShowName() == nameOfProduct)
                     {
-                        if (minPrice == -1 || shops[i].products[j].ShowPrice() < minPrice)
+                        if (minPrice == -1 || product.ShowPrice() < minPrice)
                         {
-                            minPrice = shops[i].products[j].ShowPrice();
-                            minPriceShop = shops[i];
+                            minPrice = product.ShowPrice();
+                            minPriceShop = shop;
                         }
                     }
                 }
@@ -29,8 +30,8 @@ namespace laba2
 
         
 
-        //!
-        public Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
+        
+        public static Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
         {
             int minPrice = -1;
             Shop minShop = new Shop();
@@ -171,6 +172,12 @@ namespace laba2
             shops.Add(shop2);
             shops.Add(shop3);
 
+            Shop AnswerMinPriceShow;
+            AnswerMinPriceShow = FindMinShopBatchOfProduct(shops, productCounts);
+            Console.WriteLine(AnswerMinPriceShow.ShowName());
+
+            //AnswerMinPriceShow = FindMinPrice(shops, "орехи");
+            //Console.WriteLine(AnswerMinPriceShow.ShowName());
         }
     }
 }
