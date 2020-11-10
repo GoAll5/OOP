@@ -6,15 +6,17 @@ namespace laba2
 {
     public static class ChainOfStores
     {
-        //! в отдельный класс, поиск по продуктам внутри магазина
+        
         public static Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
         {
-            int minPrice = 2147483647; //MAX Price
-            Shop minPriceShop = new Shop();
+            int minPrice = int.MaxValue; 
+            Shop minPriceShop = null;
             foreach (Shop shop in shops)
             {
-                int priceInThisShop = shop.ShowPriceName(nameOfProduct);
-                if (priceInThisShop < minPrice && priceInThisShop != default(int))
+                if (!shop.TryGetShowPrice(nameOfProduct))
+                    continue;
+                int priceInThisShop = shop.ShowPrice(nameOfProduct);
+                if (priceInThisShop < minPrice)
                 {
                     minPrice = priceInThisShop;
                     minPriceShop = shop;
@@ -27,11 +29,12 @@ namespace laba2
 
         public static Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
         {
-            int minPrice = 2147483647; //MAX Price
-            Shop minShop = new Shop();
+            int minPrice = int.MaxValue; 
+            Shop minShop = null;
             foreach (Shop shop in shops)
             {
                 int priceInThisShop;
+                
                 priceInThisShop = shop.BuyBatchProducts(productCounts);
                 if (priceInThisShop < minPrice && priceInThisShop != default(int))
                 {
