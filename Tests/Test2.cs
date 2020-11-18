@@ -45,7 +45,6 @@ namespace Tests
         [TestCase(25, 2, TestName = "TestChange_25 = 25", ExpectedResult = 25)]
         [TestCase(10, 3, TestName = "TestChange_10 = 10", ExpectedResult = 10)]
         [TestCase(100, 4, TestName = "TestChange_25 = 25", ExpectedResult = 100)]
-        [TestCase(100, 5, TestName = "TestChange_100 != -1", ExpectedResult = -1)]
         public int TestChange(int price, int id)
         {
             Product product1 = new Product(1, "€блоко", 10, 35);
@@ -61,6 +60,26 @@ namespace Tests
             shop1.ChangePrice(id, price);
 
             return shop1.ShowPrice(id);
+        }
+
+        [TestCase(100, 5)]
+        public void TestChange1(int price, int id)
+        {
+            Product product1 = new Product(1, "€блоко", 10, 35);
+            Product product2 = new Product(2, "груша", 20, 30);
+            Product product3 = new Product(3, "лук зеленый", 10, 100);
+            Product product4 = new Product(4, "лук репчатый", 33, 60);
+
+            Shop shop1 = new Shop(1, "ћагазин1", " ронва");
+            shop1.AddProduct(product1);
+            shop1.AddProduct(product2);
+            shop1.AddProduct(product3);
+            shop1.AddProduct(product4);
+            shop1.ChangePrice(id, price);
+            int? expected = null;
+            int actual = shop1.ShowPrice(id);
+
+            Assert.AreEqual(expected.GetValueOrDefault(), actual);
         }
 
         [TestCase(100)]
@@ -190,7 +209,7 @@ namespace Tests
             shop3.AddProduct(product7);
             shop3.AddProduct(product8);
 
-            int expected = -1;
+            int expected = 0;
             int actual = shop3.BuyBatchProducts(products);
 
             Assert.AreEqual(expected, actual);
@@ -207,7 +226,7 @@ namespace Tests
             List<ProductCount> products = new List<ProductCount>();
 
             products.Add(new ProductCount("скумбри€", 1));
-            products.Add(new ProductCount("вода", 3));
+            products.Add(new ProductCount("вода", 1));
             products.Add(new ProductCount("тыква", 1));
             products.Add(new ProductCount("дын€", 1));
 
@@ -234,7 +253,7 @@ namespace Tests
             shops.Add(shop3);
 
             int expected = shop3.ShowId();
-            int actual = Program.FindMinShopBatchOfProduct(shops, products).ShowId();
+            int actual = (ChainOfStores.FindMinShopBatchOfProduct(shops, products)).ShowId();
 
             Assert.AreEqual(expected, actual);
         }
@@ -270,7 +289,7 @@ namespace Tests
             shops.Add(shop3);
 
             int expected = 2;
-            int actual = Program.FindMinPrice(shops, "дын€").ShowId();
+            int actual = ChainOfStores.FindMinPrice(shops, "дын€").ShowId();
 
             Assert.AreEqual(expected, actual);
         }

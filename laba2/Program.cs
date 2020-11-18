@@ -6,51 +6,10 @@ namespace laba2
 {
     public class Program
     {
-        
-        public static Shop FindMinPrice(List<Shop> shops, string nameOfProduct)
-        {
-            int minPrice = -1;
-            Shop minPriceShop = new Shop();
-            foreach(Shop shop in shops)
-            {
-                foreach (Product product in shop.products)
-                {
-                    if (product.ShowName() == nameOfProduct)
-                    {
-                        if (minPrice == -1 || product.ShowPrice() < minPrice)
-                        {
-                            minPrice = product.ShowPrice();
-                            minPriceShop = shop;
-                        }
-                    }
-                }
-            }
-            return minPriceShop;
-        }
-
-        
-
-        
-        public static Shop FindMinShopBatchOfProduct(List<Shop> shops, List<ProductCount> productCounts)
-        {
-            int minPrice = -1;
-            Shop minShop = new Shop();
-            foreach (Shop shop in shops)
-            {
-                int priceInThisShop;
-                priceInThisShop = shop.BuyBatchProducts(productCounts);
-                if (minPrice == -1 || priceInThisShop < minPrice)
-                {
-                    minPrice = priceInThisShop;
-                    minShop = shop;
-                }
-            }
-            return minShop;
-        }
 
         static void Main()
         {
-
+            Console.WriteLine(default(int));
             Product product1 = new Product(1, "яблоко", 10, 35);
             Product product2 = new Product(2, "груша", 20, 30);
             Product product3 = new Product(3, "лук зеленый", 10, 100);
@@ -101,6 +60,7 @@ namespace laba2
             shop1.AddProduct(product8);
             shop1.AddProduct(product9);
             shop1.AddProduct(product10);
+
 
             Shop shop2 = new Shop(2, "Ашан", "Парфеновская");
             shop2.AddProduct(product11);
@@ -181,10 +141,10 @@ namespace laba2
             shops.Add(shop3);
 
             Shop AnswerMinPriceShow;
-            AnswerMinPriceShow = FindMinShopBatchOfProduct(shops, productCounts);
+            AnswerMinPriceShow = ChainOfStores.FindMinShopBatchOfProduct(shops, productCounts);
             Console.WriteLine(AnswerMinPriceShow.ShowName());
 
-            AnswerMinPriceShow = FindMinPrice(shops, "клубника");
+            AnswerMinPriceShow = ChainOfStores.FindMinPrice(shops, "клубника");
             Console.WriteLine(AnswerMinPriceShow.ShowName());
         }
     }
