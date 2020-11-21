@@ -14,12 +14,12 @@ namespace laba3
             : base()
         { }
 
-        public abstract int RestDuration(int count);
+        public abstract double RestDuration(int count);
 
         public override double Result(double distance)
         {
             double time = distance / Speed;
-            int timeForChill = 0;
+            double timeForChill = 0;
             for(int i = 1; i < distance/ RestInterval; i++)
             {
                 timeForChill += RestDuration(i);

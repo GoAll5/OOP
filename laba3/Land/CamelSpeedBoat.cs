@@ -8,15 +8,17 @@ namespace laba3.Land
     {
         public CamelSpeedBoat() : base()
         {
-            Name = "Двугорбый верблюд";
-            Speed = 10;
-            RestInterval = 30;
+            Name = "Верблюд-быстроход";
+            Speed = 40;
+            RestInterval = 10;
         }
 
-        public override int RestDuration(int count)
+        public override double RestDuration(int count)
         {
             if (count == 1)
                 return 5;
+            else if (count == 2)
+                return 6.5;
             else
                 return 8;
         }

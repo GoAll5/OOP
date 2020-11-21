@@ -31,5 +31,36 @@ namespace Tests
             //assert ожидали - получили
             
         }
+        [TestCase("MeAir", 100, 50, 5)]
+        public void TestMyAir(string name, int speed, double reduce, double answer)
+        {
+            //arrange 
+
+
+            //act
+            double expected = answer;
+            Transport ts = new MyAir(name, speed, reduce);
+            double actual = ts.Result(1000);
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
+
+        }
+
+        [TestCase("MeLand", 10, 10, 5, 595)]
+        public void TestMyAir(string name, int speed, int rest, int timeChill, double answer)
+        {
+            //arrange 
+
+
+            //act
+            double expected = answer;
+            Transport ts = new MyLand(name, speed, rest, timeChill);
+            double actual = ts.Result(1000);
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
+
+        }
     }
 }

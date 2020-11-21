@@ -13,7 +13,7 @@ namespace laba3.Land
             RestInterval = 30;
         }
 
-        public override int RestDuration(int count)
+        public override double RestDuration(int count)
         {
             if (count == 1)
                 return 5;

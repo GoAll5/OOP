@@ -4,21 +4,18 @@ using System.Text;
 
 namespace laba3.Land
 {
-    class Centaur : LandTS
+    public class Centaur : LandTS
     {
         public Centaur() : base()
         {
-            Name = "Двугорбый верблюд";
-            Speed = 10;
-            RestInterval = 30;
+            Name = "Кентавр";
+            Speed = 15;
+            RestInterval = 8;
         }
 
-        public override int RestDuration(int count)
+        public override double RestDuration(int count)
         {
-            if (count == 1)
-                return 5;
-            else
-                return 8;
+            return 2;
         }
     }
 }
