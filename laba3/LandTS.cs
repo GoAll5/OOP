@@ -7,15 +7,25 @@ namespace laba3
     public abstract class LandTS : Transport
     {
         public int RestInterval { get; set; }
-        public LandTS(string name, int speed)
-            : base(name, speed)
+        public LandTS(string name, int speed, int restInterval)
+            : base(name, speed) => RestInterval = restInterval;
+
+        public LandTS()
+            : base()
         { }
+
         public abstract int RestDuration(int count);
 
-        public override int Result()
+        public override double Result(double distance)
         {
-            //
-            return 0;
+            double time = distance / Speed;
+            int timeForChill = 0;
+            for(int i = 1; i < distance/ RestInterval; i++)
+            {
+                timeForChill += RestDuration(i);
+            }
+            time += timeForChill;
+            return time;
         }
     }
 }

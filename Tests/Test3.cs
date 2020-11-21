@@ -14,19 +14,22 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-        }
-        //[Test]
-        //public void TestShow()
-        //{
-        //    //arrange 
-            
-
-        //    //act
            
-            
+        }
+        [Test]
+        public void TestBactian()
+        {
+            //arrange 
 
-        //    //assert ожидали - получили
+
+            //act
+            double expected = 31;
+            Transport ts = new Bactrian();
+            double actual = ts.Result(100);
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
             
-        //}
+        }
     }
 }

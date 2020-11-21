@@ -16,7 +16,9 @@ namespace laba3
             Name = name;
             Speed = speed;
         }
-
-        public abstract int Result();
+        public Transport()
+        {
+        }
+        public abstract double Result(double distance);
     }
 }
