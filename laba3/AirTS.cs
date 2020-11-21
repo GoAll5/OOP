@@ -9,5 +9,13 @@ namespace laba3
         public AirTS(string name, int speed)
             : base(name, speed)
         { }
+
+        public abstract int DistanceReducer(int distance);
+
+        public override int Result()
+        {   
+            //
+            return 0;
+        }
     }
 }

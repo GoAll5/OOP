@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using laba3.Land;
+using laba3;
+using laba3.Air;
 
 namespace Tests
 {
@@ -11,7 +14,6 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            
         }
         //[Test]
         //public void TestShow()

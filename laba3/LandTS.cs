@@ -6,7 +6,7 @@ namespace laba3
 {
     public abstract class LandTS : Transport
     {
-        public int RestInterval;
+        public int RestInterval { get; set; }
         public LandTS(string name, int speed)
             : base(name, speed)
         { }
