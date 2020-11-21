@@ -6,10 +6,6 @@ namespace laba3.Land
 {
     public class Bactrian : LandTS
     {
-        //public Bactrian(string name, int speed, int rest) 
-        //    : base(name, speed, rest)
-        //{ }
-
         public Bactrian() : base()
         {
             Name = "Двугорбый верблюд";

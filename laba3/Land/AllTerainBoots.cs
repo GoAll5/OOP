@@ -4,7 +4,22 @@ using System.Text;
 
 namespace laba3.Land
 {
-    class AllTerainBoots
+    class AllTerainBoots : LandTS
     {
+        public AllTerainBoots() : base()
+        {
+            Name = "Двугорбый верблюд";
+            Speed = 10;
+            RestInterval = 30;
+        }
+
+        public override int RestDuration(int count)
+        {
+            if (count == 1)
+                return 5;
+            else
+                return 8;
+        }
     }
 }
+

@@ -4,7 +4,21 @@ using System.Text;
 
 namespace laba3.Land
 {
-    public class CamelSpeedBoat
+    public class CamelSpeedBoat : LandTS
     {
+        public CamelSpeedBoat() : base()
+        {
+            Name = "Двугорбый верблюд";
+            Speed = 10;
+            RestInterval = 30;
+        }
+
+        public override int RestDuration(int count)
+        {
+            if (count == 1)
+                return 5;
+            else
+                return 8;
+        }
     }
 }
