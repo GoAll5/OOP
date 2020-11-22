@@ -155,5 +155,58 @@ namespace Tests
             //assert ожидали - получили
 
         }
+        public void TestOnlyLand()
+        {
+            //arrange 
+
+
+            //act
+            string expected = "Ботинки-вездеходы";
+            LandTS ts1 = new Bactrian();
+            LandTS ts2 = new AllTerainBoots();
+            LandTS ts3 = new CamelSpeedBoat();
+            LandTS ts4 = new Centaur();
+            LandTS ts5 = new MyLand("MeLand", 10, 10, 5);
+            List<LandTS> ts = new List<LandTS>();
+            ts.Add(ts1);
+            ts.Add(ts2);
+            ts.Add(ts3);
+            ts.Add(ts4);
+            ts.Add(ts5);
+            LandTsRace race = new LandTsRace(1000, ts);
+            Transport first = race.FirstPlayer();
+            string actual = first.Name;
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
+
+        }
+
+        [Test]
+        public void TestOnlyAir()
+        {
+            //arrange 
+
+
+            //act
+            string expected = "MeAir";
+            AirTS ts6 = new Broom();
+            AirTS ts7 = new FlyCarpet();
+            AirTS ts8 = new Mortar();
+            AirTS ts9 = new MyAir("MeAir", 100, 50);
+            List<AirTS> ts = new List<AirTS>();
+            ts.Add(ts6);
+            ts.Add(ts7);
+            ts.Add(ts8);
+            ts.Add(ts9);
+
+            AirTsRace race = new AirTsRace(1000, ts);
+            Transport first = race.FirstPlayer();
+            string actual = first.Name;
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
+
+        }
     }
 }

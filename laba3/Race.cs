@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace laba3
-{
+{   
     public class Race<T>
         where T : Transport
     {
@@ -32,5 +32,22 @@ namespace laba3
             return firstPlayer;
             
         }
+
+        
+    }
+    public class AllTsRace : Race<Transport>
+    {
+        public AllTsRace(double distance, List<Transport> transports)
+            : base(distance, transports) { }
+    }
+    public class LandTsRace : Race<LandTS>
+    {
+        public LandTsRace(double distance, List<LandTS> transports)
+            : base(distance, transports) { }
+    }
+    public class AirTsRace : Race<AirTS>
+    {
+        public AirTsRace(double distance, List<AirTS> transports)
+            : base(distance, transports) { }
     }
 }
