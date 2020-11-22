@@ -64,6 +64,33 @@ namespace Tests
         }
 
         [Test]
+        public void TestAir()
+        {
+            //arrange 
+
+
+            //act
+            string expected = "MeAir";
+            Transport ts6 = new Broom();
+            Transport ts7 = new FlyCarpet();
+            Transport ts8 = new Mortar();
+            Transport ts9 = new MyAir("MeAir", 100, 50);
+            List<Transport> ts = new List<Transport>();
+            ts.Add(ts6);
+            ts.Add(ts7);
+            ts.Add(ts8);
+            ts.Add(ts9);
+
+            Race<Transport> race = new Race<Transport>(1000, ts);
+            Transport first = race.FirstPlayer();
+            string actual = first.Name;
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
+
+        }
+
+        [Test]
         public void TestLand()
         {
             //arrange 
@@ -82,6 +109,44 @@ namespace Tests
             ts.Add(ts3);
             ts.Add(ts4);
             ts.Add(ts5);
+            Race<Transport> race = new Race<Transport>(1000, ts);
+            Transport first = race.FirstPlayer();
+            string actual = first.Name;
+
+            Assert.AreEqual(expected, actual);
+            //assert ожидали - получили
+
+        }
+
+        [Test]
+        public void TestLandAndAir()
+        {
+            //arrange 
+
+
+            //act
+            string expected = "MeAir";
+            Transport ts1 = new Bactrian();
+            Transport ts2 = new AllTerainBoots();
+            Transport ts3 = new CamelSpeedBoat();
+            Transport ts4 = new Centaur();
+            Transport ts5 = new MyLand("MeLand", 10, 10, 5);
+            Transport ts6 = new Broom();
+            Transport ts7 = new FlyCarpet();
+            Transport ts8 = new Mortar();
+            Transport ts9 = new MyAir("MeAir", 100, 50);
+            
+            List<Transport> ts = new List<Transport>();
+            ts.Add(ts1);
+            ts.Add(ts2);
+            ts.Add(ts3);
+            ts.Add(ts4);
+            ts.Add(ts5);
+            ts.Add(ts6);
+            ts.Add(ts7);
+            ts.Add(ts8);
+            ts.Add(ts9);
+
             Race<Transport> race = new Race<Transport>(1000, ts);
             Transport first = race.FirstPlayer();
             string actual = first.Name;
