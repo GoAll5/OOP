@@ -8,7 +8,7 @@ namespace laba3.Land
     {
         public AllTerainBoots() : base()
         {
-            Name = "ботинки-вездеходы";
+            Name = "Ботинки-вездеходы";
             Speed = 6;
             RestInterval = 60;
         }
