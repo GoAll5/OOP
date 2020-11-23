@@ -16,7 +16,7 @@ namespace laba3
             Players = players;
         }
 
-        public T FirstPlayer()
+        public T Champion()
         {
             double min = Double.MaxValue;
             T firstPlayer = null;
@@ -40,14 +40,14 @@ namespace laba3
         public AllTsRace(double distance, List<Transport> transports)
             : base(distance, transports) { }
     }
-    public class LandTsRace : Race<LandTS>
+    public class LandTsRace : Race<LandTransport>
     {
-        public LandTsRace(double distance, List<LandTS> transports)
+        public LandTsRace(double distance, List<LandTransport> transports)
             : base(distance, transports) { }
     }
-    public class AirTsRace : Race<AirTS>
+    public class AirTsRace : Race<AirTransport>
     {
-        public AirTsRace(double distance, List<AirTS> transports)
+        public AirTsRace(double distance, List<AirTransport> transports)
             : base(distance, transports) { }
     }
 }

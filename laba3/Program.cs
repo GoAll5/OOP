@@ -31,7 +31,7 @@ namespace laba3
             ts.Add(ts9);
 
             AllTsRace race = new AllTsRace(1000, ts);
-            Transport first = race.FirstPlayer();
+            Transport first = race.Champion();
             string actual = first.Name;
 
             Console.WriteLine(actual);

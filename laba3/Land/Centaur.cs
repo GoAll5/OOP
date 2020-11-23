@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Land
 {
-    public class Centaur : LandTS
+    public class Centaur : LandTransport
     {
         public Centaur() : base()
         {

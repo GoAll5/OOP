@@ -4,13 +4,13 @@ using System.Text;
 
 namespace laba3
 {
-    public abstract class LandTS : Transport
+    public abstract class LandTransport : Transport
     {
         public int RestInterval { get; set; }
-        public LandTS(string name, int speed, int restInterval)
+        public LandTransport(string name, int speed, int restInterval)
             : base(name, speed) => RestInterval = restInterval;
 
-        public LandTS()
+        public LandTransport()
             : base()
         { }
 

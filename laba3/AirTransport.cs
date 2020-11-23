@@ -4,14 +4,14 @@ using System.Text;
 
 namespace laba3
 {
-    public abstract class AirTS : Transport
+    public abstract class AirTransport : Transport
     {
-        public AirTS(string name, int speed)
+        public AirTransport(string name, int speed)
             : base(name, speed)
         {
         }
 
-        public AirTS()
+        public AirTransport()
             : base()
         { }
 

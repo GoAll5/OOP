@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Land
 {
-    public class MyLand : LandTS
+    public class MyLand : LandTransport
     {
         private int TimeForFirstChill;
         private int TimeForAfterFirstChill;

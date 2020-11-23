@@ -82,7 +82,7 @@ namespace Tests
             ts.Add(ts9);
 
             Race<Transport> race = new Race<Transport>(1000, ts);
-            Transport first = race.FirstPlayer();
+            Transport first = race.Champion();
             string actual = first.Name;
 
             Assert.AreEqual(expected, actual);
@@ -110,7 +110,7 @@ namespace Tests
             ts.Add(ts4);
             ts.Add(ts5);
             Race<Transport> race = new Race<Transport>(1000, ts);
-            Transport first = race.FirstPlayer();
+            Transport first = race.Champion();
             string actual = first.Name;
 
             Assert.AreEqual(expected, actual);
@@ -148,7 +148,7 @@ namespace Tests
             ts.Add(ts9);
 
             Race<Transport> race = new Race<Transport>(1000, ts);
-            Transport first = race.FirstPlayer();
+            Transport first = race.Champion();
             string actual = first.Name;
 
             Assert.AreEqual(expected, actual);
@@ -162,19 +162,19 @@ namespace Tests
 
             //act
             string expected = "Ботинки-вездеходы";
-            LandTS ts1 = new Bactrian();
-            LandTS ts2 = new AllTerainBoots();
-            LandTS ts3 = new CamelSpeedBoat();
-            LandTS ts4 = new Centaur();
-            LandTS ts5 = new MyLand("MeLand", 10, 10, 5);
-            List<LandTS> ts = new List<LandTS>();
+            LandTransport ts1 = new Bactrian();
+            LandTransport ts2 = new AllTerainBoots();
+            LandTransport ts3 = new CamelSpeedBoat();
+            LandTransport ts4 = new Centaur();
+            LandTransport ts5 = new MyLand("MeLand", 10, 10, 5);
+            List<LandTransport> ts = new List<LandTransport>();
             ts.Add(ts1);
             ts.Add(ts2);
             ts.Add(ts3);
             ts.Add(ts4);
             ts.Add(ts5);
             LandTsRace race = new LandTsRace(1000, ts);
-            Transport first = race.FirstPlayer();
+            Transport first = race.Champion();
             string actual = first.Name;
 
             Assert.AreEqual(expected, actual);
@@ -190,18 +190,18 @@ namespace Tests
 
             //act
             string expected = "MeAir";
-            AirTS ts6 = new Broom();
-            AirTS ts7 = new FlyCarpet();
-            AirTS ts8 = new Mortar();
-            AirTS ts9 = new MyAir("MeAir", 100, 50);
-            List<AirTS> ts = new List<AirTS>();
+            AirTransport ts6 = new Broom();
+            AirTransport ts7 = new FlyCarpet();
+            AirTransport ts8 = new Mortar();
+            AirTransport ts9 = new MyAir("MeAir", 100, 50);
+            List<AirTransport> ts = new List<AirTransport>();
             ts.Add(ts6);
             ts.Add(ts7);
             ts.Add(ts8);
             ts.Add(ts9);
 
             AirTsRace race = new AirTsRace(1000, ts);
-            Transport first = race.FirstPlayer();
+            Transport first = race.Champion();
             string actual = first.Name;
 
             Assert.AreEqual(expected, actual);

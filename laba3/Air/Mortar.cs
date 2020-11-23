@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Air
 {
-    public class Mortar : AirTS
+    public class Mortar : AirTransport
     {
         public Mortar()
         {

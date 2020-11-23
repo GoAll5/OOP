@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Air
 {
-    public class FlyCarpet : AirTS
+    public class FlyCarpet : AirTransport
     {
         public FlyCarpet()
         {

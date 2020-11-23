@@ -6,9 +6,9 @@ namespace laba3
 {
     public abstract class Transport
     {
-        public string Name { get; set; }
+        public string Name { get; protected set; }
 
-        public int Speed { get; set; }
+        public int Speed { get; protected set; }
 
 
         public Transport(string name, int speed)

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Land
 {
-    public class Bactrian : LandTS
+    public class Bactrian : LandTransport
     {
         public Bactrian() : base()
         {

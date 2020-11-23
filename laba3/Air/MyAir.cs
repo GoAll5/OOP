@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Air
 {
-    public class MyAir : AirTS
+    public class MyAir : AirTransport
     {
         double Reduce;
         public MyAir(string name, int speed, double reduce)

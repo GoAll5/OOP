@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Land
 {
-    public class AllTerainBoots : LandTS
+    public class AllTerainBoots : LandTransport
     {
         public AllTerainBoots() : base()
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace laba3.Air
 {
-    public class Broom : AirTS
+    public class Broom : AirTransport
     {
         public Broom()
         {
