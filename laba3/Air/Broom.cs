@@ -6,12 +6,10 @@ namespace laba3.Air
 {
     public class Broom : AirTransport
     {
-        public Broom()
+        public Broom(string name, int speed)
+            : base(name, speed)
         {
-            Name = "Метла";
-            Speed = 20;
         }
-
         public override double DistanceReducer(double distance)
         {
             

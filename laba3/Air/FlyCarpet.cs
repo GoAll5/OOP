@@ -6,12 +6,10 @@ namespace laba3.Air
 {
     public class FlyCarpet : AirTransport
     {
-        public FlyCarpet()
+        public FlyCarpet(string name, int speed)
+            : base(name, speed)
         {
-            Name = "Ковер-самолет";
-            Speed = 10;
         }
-
         public override double DistanceReducer(double distance)
         {
             if (distance < 1000)

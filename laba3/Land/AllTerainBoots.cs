@@ -6,11 +6,10 @@ namespace laba3.Land
 {
     public class AllTerainBoots : LandTransport
     {
-        public AllTerainBoots() : base()
+        public AllTerainBoots(string name, int speed, int rest)
+            : base(name, speed, rest)
         {
-            Name = "Ботинки-вездеходы";
-            Speed = 6;
-            RestInterval = 60;
+
         }
 
         public override double RestDuration(int count)

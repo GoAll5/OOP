@@ -9,14 +9,14 @@ namespace laba3
     {
         static void Main(string[] args)
         {
-            Transport ts1 = new Bactrian();
-            Transport ts2 = new AllTerainBoots();
-            Transport ts3 = new CamelSpeedBoat();
-            Transport ts4 = new Centaur();
+            Transport ts1 = new Bactrian("Двугорбый верблюд", 10, 30);
+            Transport ts2 = new AllTerainBoots("Ботинки-вездеходы", 6, 60);
+            Transport ts3 = new CamelSpeedBoat("Верблюд-быстроход", 40, 10);
+            Transport ts4 = new Centaur("Кентавр", 15, 8);
             Transport ts5 = new MyLand("MeLand", 10, 10, 5);
-            Transport ts6 = new Broom();
-            Transport ts7 = new FlyCarpet();
-            Transport ts8 = new Mortar();
+            Transport ts6 = new Broom("Метла", 20);
+            Transport ts7 = new FlyCarpet("Ковер-самолет", 10);
+            Transport ts8 = new Mortar("Ступа", 8);
             Transport ts9 = new MyAir("MeAir", 100, 50);
 
             List<Transport> ts = new List<Transport>();

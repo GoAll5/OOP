@@ -24,7 +24,7 @@ namespace Tests
 
             //act
             double expected = 31;
-            Transport ts = new Bactrian();
+            Transport ts = new Bactrian("Двугорбый верблюд", 10, 30);
             double actual = ts.Result(100);
 
             Assert.AreEqual(expected, actual);
@@ -71,9 +71,9 @@ namespace Tests
 
             //act
             string expected = "MeAir";
-            Transport ts6 = new Broom();
-            Transport ts7 = new FlyCarpet();
-            Transport ts8 = new Mortar();
+            Transport ts6 = new Broom("Метла", 20);
+            Transport ts7 = new FlyCarpet("Ковер-самолет", 10);
+            Transport ts8 = new Mortar("Ступа", 8);
             Transport ts9 = new MyAir("MeAir", 100, 50);
             List<Transport> ts = new List<Transport>();
             ts.Add(ts6);
@@ -98,11 +98,12 @@ namespace Tests
 
             //act
             string expected = "Ботинки-вездеходы";
-            Transport ts1 = new Bactrian();
-            Transport ts2 = new AllTerainBoots();
-            Transport ts3 = new CamelSpeedBoat();
-            Transport ts4 = new Centaur();
+            Transport ts1 = new Bactrian("Двугорбый верблюд", 10, 30);
+            Transport ts2 = new AllTerainBoots("Ботинки-вездеходы", 6, 60);
+            Transport ts3 = new CamelSpeedBoat("Верблюд-быстроход", 40, 10);
+            Transport ts4 = new Centaur("Кентавр", 15, 8);
             Transport ts5 = new MyLand("MeLand", 10, 10, 5);
+            
             List<Transport> ts = new List<Transport>();
             ts.Add(ts1);
             ts.Add(ts2);
@@ -126,16 +127,16 @@ namespace Tests
 
             //act
             string expected = "MeAir";
-            Transport ts1 = new Bactrian();
-            Transport ts2 = new AllTerainBoots();
-            Transport ts3 = new CamelSpeedBoat();
-            Transport ts4 = new Centaur();
+            Transport ts1 = new Bactrian("Двугорбый верблюд", 10, 30);
+            Transport ts2 = new AllTerainBoots("Ботинки-вездеходы", 6, 60);
+            Transport ts3 = new CamelSpeedBoat("Верблюд-быстроход", 40, 10);
+            Transport ts4 = new Centaur("Кентавр", 15, 8);
             Transport ts5 = new MyLand("MeLand", 10, 10, 5);
-            Transport ts6 = new Broom();
-            Transport ts7 = new FlyCarpet();
-            Transport ts8 = new Mortar();
+            Transport ts6 = new Broom("Метла", 20);
+            Transport ts7 = new FlyCarpet("Ковер-самолет", 10);
+            Transport ts8 = new Mortar("Ступа", 8);
             Transport ts9 = new MyAir("MeAir", 100, 50);
-            
+
             List<Transport> ts = new List<Transport>();
             ts.Add(ts1);
             ts.Add(ts2);
@@ -162,10 +163,10 @@ namespace Tests
 
             //act
             string expected = "Ботинки-вездеходы";
-            LandTransport ts1 = new Bactrian();
-            LandTransport ts2 = new AllTerainBoots();
-            LandTransport ts3 = new CamelSpeedBoat();
-            LandTransport ts4 = new Centaur();
+            LandTransport ts1 = new Bactrian("Двугорбый верблюд", 10, 30);
+            LandTransport ts2 = new AllTerainBoots("Ботинки-вездеходы", 6, 60);
+            LandTransport ts3 = new CamelSpeedBoat("Верблюд-быстроход", 40, 10);
+            LandTransport ts4 = new Centaur("Кентавр", 15, 8);
             LandTransport ts5 = new MyLand("MeLand", 10, 10, 5);
             List<LandTransport> ts = new List<LandTransport>();
             ts.Add(ts1);
@@ -190,9 +191,9 @@ namespace Tests
 
             //act
             string expected = "MeAir";
-            AirTransport ts6 = new Broom();
-            AirTransport ts7 = new FlyCarpet();
-            AirTransport ts8 = new Mortar();
+            AirTransport ts6 = new Broom("Метла", 20);
+            AirTransport ts7 = new FlyCarpet("Ковер-самолет", 10);
+            AirTransport ts8 = new Mortar("Ступа", 8);
             AirTransport ts9 = new MyAir("MeAir", 100, 50);
             List<AirTransport> ts = new List<AirTransport>();
             ts.Add(ts6);

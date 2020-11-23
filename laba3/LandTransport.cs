@@ -6,13 +6,10 @@ namespace laba3
 {
     public abstract class LandTransport : Transport
     {
-        public int RestInterval { get; set; }
+        public int RestInterval { get;}
         public LandTransport(string name, int speed, int restInterval)
             : base(name, speed) => RestInterval = restInterval;
 
-        public LandTransport()
-            : base()
-        { }
 
         public abstract double RestDuration(int count);
 

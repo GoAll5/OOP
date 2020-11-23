@@ -11,9 +11,6 @@ namespace laba3
         {
         }
 
-        public AirTransport()
-            : base()
-        { }
 
         public abstract double DistanceReducer(double distance);
 

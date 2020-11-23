@@ -6,11 +6,10 @@ namespace laba3.Land
 {
     public class CamelSpeedBoat : LandTransport
     {
-        public CamelSpeedBoat() : base()
+        public CamelSpeedBoat(string name, int speed, int rest)
+            : base(name, speed, rest)
         {
-            Name = "Верблюд-быстроход";
-            Speed = 40;
-            RestInterval = 10;
+
         }
 
         public override double RestDuration(int count)

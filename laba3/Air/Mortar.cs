@@ -6,10 +6,9 @@ namespace laba3.Air
 {
     public class Mortar : AirTransport
     {
-        public Mortar()
+        public Mortar(string name, int speed)
+            : base(name, speed)
         {
-            Name = "Ступа";
-            Speed = 8;
         }
 
         public override double DistanceReducer(double distance)

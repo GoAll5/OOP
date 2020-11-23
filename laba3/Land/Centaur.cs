@@ -6,11 +6,10 @@ namespace laba3.Land
 {
     public class Centaur : LandTransport
     {
-        public Centaur() : base()
+        public Centaur(string name, int speed, int rest)
+            : base(name, speed, rest)
         {
-            Name = "Кентавр";
-            Speed = 15;
-            RestInterval = 8;
+
         }
 
         public override double RestDuration(int count)

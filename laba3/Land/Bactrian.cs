@@ -6,11 +6,10 @@ namespace laba3.Land
 {
     public class Bactrian : LandTransport
     {
-        public Bactrian() : base()
+        public Bactrian(string name, int speed, int rest)
+            : base(name, speed, rest)
         {
-            Name = "Двугорбый верблюд";
-            Speed = 10;
-            RestInterval = 30;
+           
         }
 
         public override double RestDuration(int count)
