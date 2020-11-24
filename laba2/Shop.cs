@@ -12,13 +12,6 @@ namespace laba2
         private readonly string Address;
         public List<Product> products;
 
-        public Shop()
-        {
-            products = new List<Product>();
-            Id = default(int);
-            Name = "none";
-            Address = "none";
-        }
 
         public Shop(int id, string name, string address)
         {
@@ -55,16 +48,16 @@ namespace laba2
                 return product.ShowPrice();
 
         }
-        public int ShowPriceName(string NameOfProduct)
+        public bool TryGetShowPrice(string NameOfProduct)
         {
 
             Product product = products.Find(item => item.ShowName() == NameOfProduct);
-            if (product == null)
-            {
-                return default(int);
-            }
-            return product.ShowPrice();
-
+            return product != null;
+        }
+        public int ShowPrice(string NameOfProduct)
+        {
+        Product product = products.Find(item => item.ShowName() == NameOfProduct);
+        return product.ShowPrice();
         }
 
 
