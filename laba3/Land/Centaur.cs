@@ -11,7 +11,7 @@ namespace laba3.Land
         {
 
         }
-
+      
         public override double RestDuration(int count)
         {
             return 2;

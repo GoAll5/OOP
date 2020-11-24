@@ -11,7 +11,7 @@ namespace laba3
         {
         }
 
-
+        
         public abstract double DistanceReducer(double distance);
 
         public override double Result(double distance)
