@@ -22,18 +22,11 @@ namespace laba5
                 clients[2] = clients[2].GivePassportId(3);
                 clients[2] = clients[2].GiveAddress("Ленинградский");
                 clients.Add(new NotVerifiedClient("Сергей"));
-                //Date date1 = new Date(20, 12, 2020);
-                //Date date2 = new Date(1, 1, 2021); 12
-                //Date date1 = new Date(22, 1, 2021);
-                //Date date2 = new Date(20, 2, 2021); 29
-                //Date date1 = new Date(1, 2, 2021);
-                //Date date2 = new Date(31, 3, 2021); 57
-                //Date date1 = new Date(1, 2, 2021);
-                //Date date2 = new Date(31, 3, 2022); 422
+
                 Date date1 = new Date(1, 2, 2021);
                 Date date2 = new Date(31, 3, 2022);//422
-                Date date3 = date2 - date1;
-                Console.WriteLine(date3.InDays());
+                Date date3 = date2;
+                
                 Console.WriteLine(date3.Day +"."+ date3.Month +"."+ date3.Year);
                 
                 BankSystem bankSystem = BankSystem.getInstance(date1);
