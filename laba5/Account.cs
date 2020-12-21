@@ -14,7 +14,7 @@ namespace laba5
         public bool Verified;
 
 
-        //public string Bank;
+
         public Account(uint id, double money, double percent, double limitMoney)
         {
             Id = id;
@@ -23,27 +23,27 @@ namespace laba5
             Verified = false;
             LimitMoney = limitMoney;
         }
-        public abstract void Withdrawal(double money); // снятие
+        public abstract void Withdrawal(double money);
 
         public void Replenishment(double money)
         {
             Money += money;
-        }// пополнение
+        }
 
-        public void Transfer(Account account, double money) // перевод
+        public void Transfer(Account account, double money)
         {
             this.Withdrawal(money);
             account.Replenishment(money);
         }
 
-        public void ForcedWithdrawal(double money) // принудительное снятие
+        public void ForcedWithdrawal(double money)
         { 
             Money -= money;
         }
         public abstract double dailyupdate(Date date);
         public abstract void monthupdate(double money);
 
-        // каждый месяц обновлять лимит (метод обновления лимита) !!!!!!!!!!!!!!!!!!!!!!!!!!
+
     }
 
     public class DebitAccount : Account
@@ -56,15 +56,7 @@ namespace laba5
         {
             Money += money;
         }
-        //public override double dailyupdate(Date date)
-        //{
-        //    if(DateLine < date)
-        //    {
-        //        Date date1 = date - DateLine;
-        //        return Math.Round(date1.InDays() * Percent / 365, 2);
-        //    }
-        //    return 0;
-        //}
+
         public override double dailyupdate(Date date)
         {
 
@@ -155,7 +147,7 @@ namespace laba5
 
     public class DepositAccount : Account
     {
-        private bool CanUse; // доделать переделать в date когда можно использовать
+        private bool CanUse;
         private Date CanUseDate;
         public override void monthupdate(double money)
         {
@@ -170,14 +162,6 @@ namespace laba5
 
             return Math.Round(Money * Percent / 365, 2);
         }
-        //private void CheckCanUse(Date date)
-        //{   
-        //    if (date >= CanUseDate)
-        //    {
-        //        CanUse = true;
-        //    }
-
-        //}
         public DepositAccount(uint id, double money, double percent, double limitMoney, Date canUseDate) : base(id, money, percent, limitMoney)
         {
             CanUse = false;

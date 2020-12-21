@@ -145,7 +145,7 @@ namespace laba5
             catch(Exception e)
             {
                 CountIdAccount--;
-                //Console.WriteLine(e.Message);
+
             }
         }
 
@@ -159,10 +159,6 @@ namespace laba5
                 }
                 throw new ReplenishmentException("Не удалось найти айди кому перечислить " + id.ToString());
 
-            //catch
-            //{
-            //    //Console.WriteLine(e.Message);
-            //}
 
         }
 
@@ -195,12 +191,12 @@ namespace laba5
             catch(WithdrawalException)
             {
                 CountIdOperation--;
-                //Console.WriteLine(e.Message);
+
             }
             catch (ReplenishmentException)
             {
                 CountIdOperation--;
-                //Console.WriteLine(e.Message);
+
                 Replenishment(idFrom, money);
             }
 
@@ -208,7 +204,7 @@ namespace laba5
 
         }
 
-        public void ForcedWithdrawal(uint id, double money) // принудительное снятие
+        public void ForcedWithdrawal(uint id, double money) 
         {
             if (Accounts.ContainsKey(id))
             {

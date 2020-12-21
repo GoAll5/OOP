@@ -54,7 +54,7 @@ namespace laba5
                 Console.WriteLine(clients[3].Accounts[2].Id + " " + clients[3].Accounts[2].Money);
                 bankSystem.CancelOperation(clients[0].Operations[0]);
 
-                //Math.Round(6/12, 2) 2 знака после запятой
+
             }
             catch (Exception e)
             {

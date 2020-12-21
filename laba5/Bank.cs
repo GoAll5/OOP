@@ -69,7 +69,7 @@ namespace laba5
                         percent = SecondtDepositPercent;
                     else
                         percent = ThirdDepositPercent;
-                    account = new DepositAccount(id, money, percent, LimitMoney, DateForDebit); //////////////////////////////////bool переделать в date
+                    account = new DepositAccount(id, money, percent, LimitMoney, DateForDebit); 
                     break;
                 default:
                     throw new Exception("Не существует такого счета");
