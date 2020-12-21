@@ -238,13 +238,10 @@ namespace laba5
                 Replenishment(Operations[id].IdTo, Operations[id].Money);
                 //Console.WriteLine(e.Message);
             }
-            catch(Exception e)
-            {
-                //Console.WriteLine(e.Message);
-            }
+
 
         }
 
-
+        //грязный код, форматирование иф() в аккаунте, 
     }
 }
