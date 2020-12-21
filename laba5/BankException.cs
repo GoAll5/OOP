@@ -6,11 +6,11 @@ namespace laba5
 {
     public class WithdrawalException : Exception
     {
-        public WithdrawalException() 
+        public WithdrawalException()
         {
         }
-        public WithdrawalException(string message) : base(message) 
-        { 
+        public WithdrawalException(string message) : base(message)
+        {
         }
     }
 

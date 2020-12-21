@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace laba5
-{   
+{
 
     public abstract class Client
     {
         public List<Account> Accounts;
         public string Name;
         public List<uint> Operations;
-        
+
         public Client(string name)
         {
             Accounts = null;
@@ -21,7 +21,7 @@ namespace laba5
 
         public abstract Client GiveAddress(string address);
         public abstract Client GivePassportId(uint passportId);
-        public abstract string Type();
+
         public void AddOperation(uint id)
         {
             if (Operations == null)
@@ -36,11 +36,18 @@ namespace laba5
         public uint PassportId;
         public string Address;
 
-        public VerifiedClient(string name) : base(name)
-        {  }
-        public override string Type()
+        public VerifiedClient(string name, uint id) : base(name)
         {
-            return "Verified";
+            PassportId = id;
+        }
+        public VerifiedClient(string name, string address) : base(name)
+        {
+            Address = address;
+        }
+        public VerifiedClient(string name, uint id, string address) : base(name)
+        {
+            PassportId = id;
+            Address = address;
         }
         public override Client GivePassportId(uint passportId)
         {
@@ -66,14 +73,10 @@ namespace laba5
     {
         public NotVerifiedClient(string name) : base(name)
         { }
-        public override string Type()
-        {
-            return "Verified";
-        }
+
         public override Client GivePassportId(uint passportId)
         {
-            VerifiedClient client = new VerifiedClient(Name);
-            client.PassportId = passportId;
+            VerifiedClient client = new VerifiedClient(Name, passportId);
             if (Accounts != null)
             {
                 foreach (Account account in Accounts)
@@ -86,15 +89,15 @@ namespace laba5
         }
         public override Client GiveAddress(string address)
         {
-            VerifiedClient client = new VerifiedClient(Name);
+            VerifiedClient client = new VerifiedClient(Name, address);
             client.Address = address;
             if (Accounts != null)
             {
-                    foreach (Account account in Accounts)
-                    {
+                foreach (Account account in Accounts)
+                {
                     account.Verified = true;
                     client.AddAccount(account);
-                    }
+                }
             }
             return client;
         }

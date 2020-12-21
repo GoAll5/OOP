@@ -6,14 +6,14 @@ namespace laba5
 {
     public class Date
     {
-        public int Day  { get; private set; }
+        public int Day { get; private set; }
         public int Month { get; private set; }
         public int Year { get; private set; }
 
         public static Date operator ++(Date date)
         {
             int maxDays = date.MaxDaysInMonth();
-            if(date.Day == maxDays)
+            if (date.Day == maxDays)
             {
                 date.Day = 1;
                 date.Month += 1;
@@ -40,7 +40,7 @@ namespace laba5
         {
             return Day + Year * 365 + Month * 30;
         }
-        
+
 
         public static bool operator <=(Date dateL, Date dateR)
         {
@@ -94,27 +94,27 @@ namespace laba5
             }
         }
         public Date(int day, int month, int year)
-        {   
+        {
             if (year < 2020)
                 throw new DateException("В это время еще не было банков");
             if (month > 12 || month < 1)
-                throw new DateException("Месяц не может принимать такое значение: "+ month.ToString());
+                throw new DateException("Месяц не может принимать такое значение: " + month.ToString());
             else
             {
                 if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
                 {
                     if (day > 31 || day < 1)
-                        throw new DateException("В "+ month.ToString() +" месяц не может быть "+ day.ToString() + "дней");
+                        throw new DateException("В " + month.ToString() + " месяц не может быть " + day.ToString() + "дней");
                 }
                 else if (month == 4 || month == 6 || month == 9 || month == 11)
                 {
                     if (day > 30 || day < 1)
                         throw new DateException("В " + month.ToString() + " месяц не может быть " + day.ToString() + "дней");
                 }
-                else if(month == 2 && (year % 4 == 0))
+                else if (month == 2 && (year % 4 == 0))
                 {
                     if (day > 29 || day < 1)
-                        throw new DateException("В " + month.ToString() + " месяц не может быть " + day.ToString() + "дней(Високосный год)" );
+                        throw new DateException("В " + month.ToString() + " месяц не может быть " + day.ToString() + "дней(Високосный год)");
                 }
                 else
                 {
@@ -153,6 +153,6 @@ namespace laba5
             Year = year;
         }
 
-    } 
-    
+    }
+
 }

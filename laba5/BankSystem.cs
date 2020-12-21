@@ -5,30 +5,30 @@ using System.Text;
 namespace laba5
 {
 
-    
+
     public class BankSystem
     {
-        public static bool already;
-        private static uint CountIdAccount;
+        public bool already;
+        private uint CountIdAccount;
 
-        private static uint CountIdOperation;
+        private uint CountIdOperation;
 
-        private static Dictionary<uint, History> Operations;
+        private Dictionary<uint, History> Operations;
 
-        private static Dictionary<uint, Client> Clients;
-        public static List<Client> Clientss;
+        private Dictionary<uint, Client> Clients;
+        public List<Client> Clientss;
 
         private static BankSystem bankSystem;
 
-        private static List<Bank> Banks;
+        private List<Bank> Banks;
 
         private static Dictionary<uint, Account> Accounts;
-
         private static List<uint> IdDopMoney;
         private static List<double> DopMoney;
 
         private static Date DateLine;
-        private BankSystem(Date date) {
+        private BankSystem(Date date)
+        {
             CountIdAccount = 0;
             CountIdOperation = 0;
             DateLine = date;
@@ -37,15 +37,15 @@ namespace laba5
 
 
         public static BankSystem getInstance(Date date)
-        {   
-            if(BankSystem.bankSystem == null)
+        {
+            if (BankSystem.bankSystem == null)
             {
                 BankSystem.bankSystem = new BankSystem(date);
             }
             return BankSystem.bankSystem;
         }
 
-       private static void AddDopMoney(Date date)
+        private static void AddDopMoney(Date date)
         {
             Date date1 = new Date(DateLine.Day, DateLine.Month, DateLine.Year);
             DateLine++;
@@ -69,7 +69,7 @@ namespace laba5
             if (DateLine < date)
                 AddDopMoney(date);
         }
-       private static bool OtherDate(Date date)
+        private static bool OtherDate(Date date)
         {
             return DateLine < date;
         }
@@ -98,32 +98,32 @@ namespace laba5
 
         }
         public void ChangeDateForDebit(string bank, Date dateForDebit)
-        {   
-            for(int i = 0; i < Banks.Count; i++)
+        {
+            for (int i = 0; i < Banks.Count; i++)
             {
-                if(Banks[i].Name == bank)
+                if (Banks[i].Name == bank)
                 {
-                    Banks[i].ChangeDateForDebit(dateForDebit);
+                    Banks[i].ChangeDateForDeposit(dateForDebit);
                 }
             }
         }
 
 
-        public void AddAccount(string bank, Client newClient, Account account, double money)
-        {   
+        public void AddDebitAccount(string bank, Client newClient, double money)
+        {
             try
-            {   
+            {
                 CountIdAccount++;
                 for (int i = 0; i < Banks.Count; i++)
                 {
                     Bank bank1 = Banks[i];
                     if (bank1.Name == bank)
-                    {   
-                        if(Accounts == null)
+                    {
+                        if (Accounts == null)
                         {
                             Accounts = new Dictionary<uint, Account>();
                         }
-                        Accounts.Add(CountIdAccount, bank1.AddAccount(newClient, account, money, CountIdAccount));
+                        Accounts.Add(CountIdAccount, bank1.AddDebitAccount(newClient, money, CountIdAccount));
                         if (Clients == null)
                             Clients = new Dictionary<uint, Client>();
                         Clients.Add(CountIdAccount, newClient);
@@ -142,7 +142,87 @@ namespace laba5
                 }
                 CountIdAccount--;
             }
-            catch(Exception e)
+            catch (Exception)
+            {
+                CountIdAccount--;
+
+            }
+        }
+        public void AddCreditAccount(string bank, Client newClient, double money)
+        {
+            try
+            {
+                CountIdAccount++;
+                for (int i = 0; i < Banks.Count; i++)
+                {
+                    Bank bank1 = Banks[i];
+                    if (bank1.Name == bank)
+                    {
+                        if (Accounts == null)
+                        {
+                            Accounts = new Dictionary<uint, Account>();
+                        }
+                        Accounts.Add(CountIdAccount, bank1.AddCreditAccount(newClient, money, CountIdAccount));
+                        if (Clients == null)
+                            Clients = new Dictionary<uint, Client>();
+                        Clients.Add(CountIdAccount, newClient);
+                        if (Clientss == null)
+                            Clientss = new List<Client>();
+                        Clientss.Add(newClient);
+                        if (DopMoney == null)
+                            DopMoney = new List<double>();
+                        double dopMoney = 0;
+                        DopMoney.Add(dopMoney);
+                        if (IdDopMoney == null)
+                            IdDopMoney = new List<uint>();
+                        IdDopMoney.Add(CountIdAccount);
+                        return;
+                    }
+                }
+                CountIdAccount--;
+
+            }
+            catch (Exception)
+            {
+                CountIdAccount--;
+
+            }
+        }
+        public void AddDepositAccount(string bank, Client newClient, double money)
+        {
+            try
+            {
+                CountIdAccount++;
+                for (int i = 0; i < Banks.Count; i++)
+                {
+                    Bank bank1 = Banks[i];
+                    if (bank1.Name == bank)
+                    {
+                        if (Accounts == null)
+                        {
+                            Accounts = new Dictionary<uint, Account>();
+                        }
+                        Accounts.Add(CountIdAccount, bank1.AddDepositAccount(newClient, money, CountIdAccount));
+                        if (Clients == null)
+                            Clients = new Dictionary<uint, Client>();
+                        Clients.Add(CountIdAccount, newClient);
+                        if (Clientss == null)
+                            Clientss = new List<Client>();
+                        Clientss.Add(newClient);
+                        if (DopMoney == null)
+                            DopMoney = new List<double>();
+                        double dopMoney = 0;
+                        DopMoney.Add(dopMoney);
+                        if (IdDopMoney == null)
+                            IdDopMoney = new List<uint>();
+                        IdDopMoney.Add(CountIdAccount);
+                        return;
+                    }
+                }
+                CountIdAccount--;
+
+            }
+            catch (Exception)
             {
                 CountIdAccount--;
 
@@ -152,12 +232,12 @@ namespace laba5
         public void Replenishment(uint id, double money)
         {
 
-                if (Accounts.ContainsKey(id))
-                {
-                        Accounts[id].Replenishment(money);
-                        return;
-                }
-                throw new ReplenishmentException("Не удалось найти айди кому перечислить " + id.ToString());
+            if (Accounts.ContainsKey(id))
+            {
+                Accounts[id].Replenishment(money);
+                return;
+            }
+            throw new ReplenishmentException("Не удалось найти айди кому перечислить " + id.ToString());
 
 
         }
@@ -188,7 +268,7 @@ namespace laba5
                 clientFrom.AddOperation(CountIdOperation);
                 clientTo.AddOperation(CountIdOperation);
             }
-            catch(WithdrawalException)
+            catch (WithdrawalException)
             {
                 CountIdOperation--;
 
@@ -204,7 +284,7 @@ namespace laba5
 
         }
 
-        public void ForcedWithdrawal(uint id, double money) 
+        public void ForcedWithdrawal(uint id, double money)
         {
             if (Accounts.ContainsKey(id))
             {
@@ -229,14 +309,10 @@ namespace laba5
                 else
                     throw new Exception("Не удалось найти айди операции " + id.ToString());
             }
-            catch(ForcedWithdrawalException e)
-            {
-                //Console.WriteLine(e.Message);
-            }
-            catch (ReplenishmentException e)
+            catch (ReplenishmentException)
             {
                 Replenishment(Operations[id].IdTo, Operations[id].Money);
-                //Console.WriteLine(e.Message);
+
             }
 
 

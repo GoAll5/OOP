@@ -14,11 +14,10 @@ namespace laba5
         public double SecondtDepositPercent;
         public double ThirdDepositPercent;
         public double LimitMoney;
-        public Date DateForDebit;
+        public Date DateForDeposit;
         public List<Client> Clients;
         public List<Account> Accounts;
-        public Bank(string name, double debitPercent, double creditPercent, double firstDepositPercent
-, double secondtDepositPercent,  double thirdDepositPercent, double limitMoney, Date dateForDebit)
+        public Bank(string name, double debitPercent, double creditPercent, double firstDepositPercent, double secondtDepositPercent, double thirdDepositPercent, double limitMoney, Date dateForDebit)
         {
             Name = name;
             DebitPercent = debitPercent;
@@ -27,13 +26,13 @@ namespace laba5
             SecondtDepositPercent = secondtDepositPercent;
             ThirdDepositPercent = thirdDepositPercent;
             LimitMoney = limitMoney;
-            DateForDebit = dateForDebit;
+            DateForDeposit = dateForDebit;
             Clients = new List<Client>();
             Accounts = new List<Account>();
         }
-        public void ChangeDateForDebit(Date date)
+        public void ChangeDateForDeposit(Date date)
         {
-            DateForDebit = date;
+            DateForDeposit = date;
         }
 
         private bool HaveClient(Client client)
@@ -49,38 +48,44 @@ namespace laba5
             return false;
         }
 
-        public Account AddAccount(Client newClient, Account account, double money, uint id)
+        public Account AddDebitAccount(Client newClient, double money, uint id)
         {
-
-
-            switch (account.Type())
-            {
-                case "DebitAccount":
-                    account.GiveInfo(id, money, DebitPercent, LimitMoney);
-                    break;
-                case "CreditAccount":
-                    account.GiveInfo(id, money, CreditPercent, LimitMoney);
-                    break;
-                case "DepositAccount":
-                    double percent;
-                    if (money < 50000)
-                        percent = FirstDepositPercent;
-                    else if (50000 <= money && money < 100000)
-                        percent = SecondtDepositPercent;
-                    else
-                        percent = ThirdDepositPercent;
-                    account.GiveInfo(id, money, percent, LimitMoney);
-                    account.GiveDateForDebit(DateForDebit);
-                    break;
-                default:
-                    throw new Exception("Не существует такого счета");
-            }
-            if(!(HaveClient(newClient)))
+            Account account = new DebitAccount(id, money, DebitPercent, LimitMoney);
+            if (!(HaveClient(newClient)))
                 Clients.Add(newClient);
             newClient.AddAccount(account);
             Accounts.Add(account);
             return account;
-           
+
+        }
+        public Account AddCreditAccount(Client newClient, double money, uint id)
+        {
+            Account account = new CreditAccount(id, money, DebitPercent, LimitMoney);
+            if (!(HaveClient(newClient)))
+                Clients.Add(newClient);
+            newClient.AddAccount(account);
+            Accounts.Add(account);
+            return account;
+
+        }
+        public Account AddDepositAccount(Client newClient, double money, uint id)
+        {
+
+            double percent;
+            if (money < 50000)
+                percent = FirstDepositPercent;
+            else if (50000 <= money && money < 100000)
+                percent = SecondtDepositPercent;
+            else
+                percent = ThirdDepositPercent;
+            Account account = new DepositAccount(id, money, DebitPercent, LimitMoney, DateForDeposit);
+
+            if (!(HaveClient(newClient)))
+                Clients.Add(newClient);
+            newClient.AddAccount(account);
+            Accounts.Add(account);
+            return account;
+
         }
 
 
