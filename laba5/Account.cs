@@ -5,21 +5,23 @@ using System.Text;
 namespace laba5
 {
    
-    public abstract class BankAccount
+    public abstract class Account
     {
         public double Money;
         public uint Id;
         public double Percent;
-        public BankAccount(uint id, double money, double percent)
+        public double LimitMoney;
+        public bool Verified;
+
+
+        //public string Bank;
+        public Account(uint id, double money, double percent, double limitMoney)
         {
             Id = id;
             Money = money;
             Percent = percent;
-        }
-        public BankAccount(uint id, double money)
-        {
-            Id = id;
-            Money = money;
+            Verified = false;
+            LimitMoney = limitMoney;
         }
         public abstract void Withdrawal(double money); // снятие
 
@@ -28,90 +30,186 @@ namespace laba5
             Money += money;
         }// пополнение
 
-        public void Transfer(BankAccount account, double money) // перевод
+        public void Transfer(Account account, double money) // перевод
         {
-            try
-            {
-                if (account != null)
-                {
+            this.Withdrawal(money);
+            account.Replenishment(money);
+        }
 
-                    this.Withdrawal(money);
-                    Money += money;
-                }
-            }
-            catch (Exception e)
-            {
-                //Console.WriteLine(e.Message);
-            }
-
-        }  
-
-        public void ForcedWithdrawal(int money) // принудительное снятие
+        public void ForcedWithdrawal(double money) // принудительное снятие
         { 
             Money -= money;
-        } 
+        }
+        public abstract double dailyupdate(Date date);
+        public abstract void monthupdate(double money);
 
+        // каждый месяц обновлять лимит (метод обновления лимита) !!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
-    public class DebitAccount : BankAccount
+    public class DebitAccount : Account
     {
         
-        public DebitAccount(uint id, double money, double percent) : base(id, money, percent)
+        public DebitAccount(uint id, double money, double percent, double limitMoney) : base(id, money, percent, limitMoney)
         {
         }
-        public override void Withdrawal(double money)
+        public override void monthupdate(double money)
         {
-            if (Money >= money)
-                Money -= money;
+            Money += money;
+        }
+        //public override double dailyupdate(Date date)
+        //{
+        //    if(DateLine < date)
+        //    {
+        //        Date date1 = date - DateLine;
+        //        return Math.Round(date1.InDays() * Percent / 365, 2);
+        //    }
+        //    return 0;
+        //}
+        public override double dailyupdate(Date date)
+        {
+
+            return Math.Round(Money * Percent / 365, 2);
+
+        }
+        public override void Withdrawal(double money)
+        {   
+            if (Verified)
+            {
+                if (Money >= money)
+                    Money -= money;
+                else
+                {
+                    throw new WithdrawalException("Не достаточно средств");
+                }
+            }
             else
             {
-                throw new Exception("Не достаточно средств");
+                if (Money >= money && LimitMoney >= money)
+                {
+                    Money -= money;
+                    LimitMoney -= money;
+                }
+                else
+                {
+                    throw new WithdrawalException("Не достаточно средств или лимит");
+                }
+
             }
+                
         }
   
 
 
     }
     
-    public class CreditAccount : BankAccount
+    public class CreditAccount : Account
     {
-
-        public CreditAccount(uint id, double money, double percent) : base(id, money, percent)
+        public override void monthupdate(double money)
+        {
+        }
+        public CreditAccount(uint id, double money, double percent, double limitMoney) : base(id, money, percent, limitMoney)
         {  
         }
+        public override double dailyupdate(Date date)
+        {
 
+            return 0;
+        }
         public override void Withdrawal(double money)
         {
-            if (Money >= money)
-                Money -= money;
-            else 
+            if (Verified)
             {
-                money += money * Percent / 100;
-                Money -= money;
+                if (Money >= money)
+                    Money -= money;
+                else
+                {
+                    double newMoney = money + Math.Round(money * Percent / 100, 2);
+                    Money -= money;
+                }
             }
+            else
+            {
+                if (LimitMoney >= money)
+                {
+                    if (Money >= money)
+                    {
+                        Money -= money;
+                        LimitMoney -= money;
+                        
+                    }
+                    else
+                    {
+                        double newMoney = money + Math.Round(money * Percent / 100, 2);
+                        LimitMoney -= money;
+                        Money -= newMoney;
+                    }
+                }
+                else
+                {
+                        throw new WithdrawalException("Лимит превышен");
+                }
 
+            }
         }
     }
 
-    public class Deposit : BankAccount
+    public class DepositAccount : Account
     {
-        public bool CanUse;
-        public Deposit(uint id, double money) : base(id, money)
+        private bool CanUse; // доделать переделать в date когда можно использовать
+        private Date CanUseDate;
+        public override void monthupdate(double money)
+        {
+            Money += money;
+        }
+        public override double dailyupdate(Date date)
+        {   
+            if(CanUseDate >= date)
+            {
+                CanUse = true;
+            }
+
+            return Math.Round(Money * Percent / 365, 2);
+        }
+        //private void CheckCanUse(Date date)
+        //{   
+        //    if (date >= CanUseDate)
+        //    {
+        //        CanUse = true;
+        //    }
+
+        //}
+        public DepositAccount(uint id, double money, double percent, double limitMoney, Date canUseDate) : base(id, money, percent, limitMoney)
         {
             CanUse = false;
-            if (money < 50000)
-                Percent = 3;
-            else if (50000 <= money && money < 100000)
-                Percent = 3.5;
-            else
-                Percent = 4;
+            CanUseDate = canUseDate;
         }
         public override void Withdrawal(double money)
         {
             if (CanUse)
-                Money -= money;
-            else 
-                throw new Exception("Не закончился срок депозита");
+            {
+                if (Verified)
+                {
+                    if (Money >= money)
+                    {
+                        Money -= money;
+                        return;
+                    }
+                    throw new WithdrawalException("Не достаточно средств");
+                }
+                else
+                {
+                    if (Money >= money && LimitMoney >= money)
+                    {   
+                        Money -= money;
+                        LimitMoney -= money;
+                        return;
+                    }
+                    throw new WithdrawalException("Не достаточно средств или лимит");
+                }
+
+            }
+            else
+                throw new WithdrawalException("Не закончился срок депозита");
         }
     }
 }
