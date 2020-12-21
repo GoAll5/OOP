@@ -109,7 +109,7 @@ namespace laba5
         }
 
 
-        public void AddAccount(string bank, Client newClient, string accountType, double money)
+        public void AddAccount(string bank, Client newClient, Account account, double money)
         {   
             try
             {   
@@ -123,7 +123,7 @@ namespace laba5
                         {
                             Accounts = new Dictionary<uint, Account>();
                         }
-                        Accounts.Add(CountIdAccount, bank1.AddAccount(newClient, accountType, money, CountIdAccount));
+                        Accounts.Add(CountIdAccount, bank1.AddAccount(newClient, account, money, CountIdAccount));
                         if (Clients == null)
                             Clients = new Dictionary<uint, Client>();
                         Clients.Add(CountIdAccount, newClient);

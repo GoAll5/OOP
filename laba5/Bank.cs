@@ -49,17 +49,17 @@ namespace laba5
             return false;
         }
 
-        public Account AddAccount(Client newClient, string accountType, double money, uint id)
+        public Account AddAccount(Client newClient, Account account, double money, uint id)
         {
 
-            Account account;
-            switch (accountType)
+
+            switch (account.Type())
             {
                 case "DebitAccount":
-                    account = new DebitAccount(id, money, DebitPercent, LimitMoney);
+                    account.GiveInfo(id, money, DebitPercent, LimitMoney);
                     break;
                 case "CreditAccount":
-                    account = new CreditAccount(id, money, CreditPercent, LimitMoney);
+                    account.GiveInfo(id, money, CreditPercent, LimitMoney);
                     break;
                 case "DepositAccount":
                     double percent;
@@ -69,7 +69,8 @@ namespace laba5
                         percent = SecondtDepositPercent;
                     else
                         percent = ThirdDepositPercent;
-                    account = new DepositAccount(id, money, percent, LimitMoney, DateForDebit); 
+                    account.GiveInfo(id, money, percent, LimitMoney);
+                    account.GiveDateForDebit(DateForDebit);
                     break;
                 default:
                     throw new Exception("Не существует такого счета");

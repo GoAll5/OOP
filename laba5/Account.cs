@@ -14,8 +14,20 @@ namespace laba5
         public bool Verified;
 
 
+        public Account()
+        {
 
+        }
         public Account(uint id, double money, double percent, double limitMoney)
+        {
+            Id = id;
+            Money = money;
+            Percent = percent;
+            Verified = false;
+            LimitMoney = limitMoney;
+        }
+        public abstract void GiveDateForDebit(Date date);
+        public void GiveInfo(uint id, double money, double percent, double limitMoney)
         {
             Id = id;
             Money = money;
@@ -43,12 +55,19 @@ namespace laba5
         public abstract double dailyupdate(Date date);
         public abstract void monthupdate(double money);
 
+        public abstract string Type();
 
     }
 
     public class DebitAccount : Account
     {
-        
+        public override void GiveDateForDebit(Date date)
+        {
+        }
+        public DebitAccount() :base()
+        {
+
+        }
         public DebitAccount(uint id, double money, double percent, double limitMoney) : base(id, money, percent, limitMoney)
         {
         }
@@ -89,13 +108,25 @@ namespace laba5
             }
                 
         }
-  
+        public override string Type()
+        {
+            return "DebitAccount";
+        }
+
 
 
     }
     
     public class CreditAccount : Account
     {
+        public override void GiveDateForDebit(Date date)
+        {
+
+        }
+        public CreditAccount() : base()
+        {
+
+        }
         public override void monthupdate(double money)
         {
         }
@@ -143,10 +174,18 @@ namespace laba5
 
             }
         }
+        public override string Type()
+        {
+            return "CreditAccount";
+        }
     }
 
     public class DepositAccount : Account
     {
+        public DepositAccount() : base()
+        {
+
+        }
         private bool CanUse;
         private Date CanUseDate;
         public override void monthupdate(double money)
@@ -161,6 +200,10 @@ namespace laba5
             }
 
             return Math.Round(Money * Percent / 365, 2);
+        }
+        public override void GiveDateForDebit(Date date)
+        {
+            CanUseDate = date;
         }
         public DepositAccount(uint id, double money, double percent, double limitMoney, Date canUseDate) : base(id, money, percent, limitMoney)
         {
@@ -194,6 +237,10 @@ namespace laba5
             }
             else
                 throw new WithdrawalException("Не закончился срок депозита");
+        }
+        public override string Type()
+        {
+            return "DepostAccount";
         }
     }
 }
